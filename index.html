@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Galería Privada: [Nombre del Cliente] - Esteban Campos</title>
+    <title>Esteban Campos | Fotografía de Boda y Eventos</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* 🎨 REUTILIZACIÓN DE VARIABLES DE SU INDEX.HTML */
+        /* 🎨 VARIABLES GLOBALES DE ESTILO */
         :root {
             --bg-color-top: #111111;
             --bg-color-bottom: #000000;
@@ -29,188 +28,227 @@
             font-family: var(--font-sans); 
             margin: 0; padding: 0; 
             color: var(--text-main); 
-            background-color: var(--bg-color-top);
+            background: linear-gradient(180deg, var(--bg-color-top) 0%, var(--bg-color-bottom) 100%);
             line-height: 1.6;
             min-height: 100vh;
         }
-        
+
         /* CONTENEDOR PRINCIPAL */
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 10%;
+            padding: 20px;
         }
 
-        /* === 1. HEADER / INFO DE LA SESIÓN === */
-        .session-header {
-            text-align: center;
-            padding: 80px 0 60px 0;
-            margin-bottom: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* === 1. ENCABEZADO Y MENÚ === */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(17, 17, 17, 0.9);
         }
-        .session-header h1 {
+        .logo {
             font-family: var(--font-serif);
-            font-size: 3.5em; /* Grande y de lujo, como su H1 */
-            font-weight: 400;
-            font-style: italic;
-            margin: 0 0 10px 0;
+            font-size: 1.8em;
+            font-weight: 300;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
             color: var(--accent-hover);
         }
-        .session-header p {
-            font-size: 1.1em;
-            letter-spacing: 3px;
+
+        /* === 2. SECCIÓN HERO (PORTADA) === */
+        .hero {
+            height: 80vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('assets/images/hero_placeholder.jpg') no-repeat center center/cover;
+            color: var(--text-main);
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4); 
+            z-index: 1;
+        }
+        .hero-content {
+            z-index: 2;
+        }
+        .hero h2 {
+            font-family: var(--font-serif);
+            font-size: 5em;
+            font-weight: 400;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        .hero p {
+            font-family: var(--font-sans);
+            font-size: 1.2em;
+            letter-spacing: 5px;
             text-transform: uppercase;
             color: var(--text-light);
-            margin: 0;
-        }
-
-        /* === 2. BOTÓN DE DESCARGA (Reutiliza el estilo CTA) === */
-        .download-container {
-            text-align: center;
-            margin-bottom: 60px;
+            margin-top: 0;
         }
         .cta-button {
-            /* Copiado de su index.css */
             display: inline-block;
-            padding: 18px 45px;
+            padding: 15px 35px;
             background: var(--accent);
             color: var(--bg-color-top);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
-            font-size: 0.9em;
-            border: none;
-            cursor: pointer;
+            margin-top: 20px;
             transition: background 0.3s var(--ease-out), transform 0.3s;
         }
         .cta-button:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
         }
-        .download-info {
-            font-size: 0.9em;
-            color: var(--text-light);
-            margin-top: 15px;
-        }
 
-
-        /* === 3. GALERÍA DE FOTOS (Rejilla) === */
-        .gallery-grid {
-            display: grid;
-            /* Se ajusta a 4 columnas en desktop y baja a 2 o 1 en móvil */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px; /* Separación entre fotos */
+        /* === 3. SECCIÓN SOBRE MÍ === */
+        .about {
+            padding: 80px 0;
+            display: flex;
+            gap: 40px;
+            align-items: center;
         }
-        .photo-card {
+        .about-image {
+            flex: 1;
+            max-width: 400px;
             overflow: hidden;
-            position: relative;
-            cursor: zoom-in;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra oscura para profundidad */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        .photo-card img {
+        .about-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
             display: block;
-            transition: opacity 0.4s var(--ease-out);
         }
-        .photo-card img:hover {
-            opacity: 0.85;
+        .about-text {
+            flex: 2;
+            padding-right: 20px;
         }
-
+        .about-text h3 {
+            font-family: var(--font-serif);
+            font-size: 3em;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: var(--text-light);
+            font-size: 1.05em;
+            margin-bottom: 20px;
+        }
+        
         /* === 4. PIE DE PÁGINA === */
         footer {
             background-color: var(--bg-color-bottom);
             color: #555; 
-            padding: 40px 10%;
+            padding: 40px 0;
             text-align: center;
-            margin-top: 80px;
-        }
-        .footer-logo {
-            font-family: var(--font-serif);
-            font-size: 1.2em;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 10px;
+            margin-top: 50px;
         }
         .footer-text {
             color: var(--text-light);
             font-size: 0.8em;
+            letter-spacing: 1px;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .container { padding: 20px; }
-            .session-header h1 { font-size: 2.5em; }
-            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-        }
 
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-image, .about-text {
+                max-width: 100%;
+                padding-right: 0;
+            }
+            .hero h2 {
+                font-size: 3.5em;
+            }
+            .hero p {
+                font-size: 1em;
+                letter-spacing: 3px;
+            }
+        }
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="session-header">
-        <h1>Comunión de Marina (2026)</h1>
-        <p>Galería Privada para **Familia García**</p>
-    </div>
+    <header>
+        <a href="#" class="logo">Esteban Campos</a>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#portafolio">Portafolio</a>
+            <a href="#sobre-mi">Sobre Mí</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
 
-    <div class="container">
-        
-        <div class="download-container">
-            <a href="https://www.dropbox.com/scl/fi/ARCHIVOS_FINALES_ZIP/Marina_Comunion_2026.zip?rlkey=CLAVE_DEL_ZIP_MARINA&st=ST_MARINA&dl=1" 
-               class="cta-button" 
-               target="_blank">
-                DESCARGAR TODAS LAS FOTOS ORIGINALES (ZIP)
-            </a>
-            <p class="download-info">Haga clic una sola vez. La descarga puede tardar unos minutos.</p>
-        </div>
-
-        <div class="gallery-grid">
-            
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/lbqqa7z59e65fc8yrm0ia/Fotos_4_de_Mayo_2025_Fiestas_ECP_-1.jpg?rlkey=lucq04d2thxcuv17w1ra40vg8&st=7ggrumpi&raw=1" alt="Foto de Sesión 1">
-            </div>
-
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/ot62i0d0n0l9v62x9o4u1/Foto_2.jpg?rlkey=otro_codigo_secreto&st=st_2&raw=1" alt="Foto de Sesión 2">
-            </div>
-
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/p5q8k3f1m1r8w73y0p5v2/Foto_3.jpg?rlkey=tercer_codigo_secreto&st=st_3&raw=1" alt="Foto de Sesión 3">
-            </div>
-            
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/lbqqa7z59e65fc8yrm0ia/Fotos_4_de_Mayo_2025_Fiestas_ECP_-1.jpg?rlkey=lucq04d2thxcuv17w1ra40vg8&st=7ggrumpi&raw=1" alt="Foto de Sesión 4">
-            </div>
-
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/ot62i0d0n0l9v62x9o4u1/Foto_2.jpg?rlkey=otro_codigo_secreto&st=st_2&raw=1" alt="Foto de Sesión 5">
-            </div>
-
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/p5q8k3f1m1r8w73y0p5v2/Foto_3.jpg?rlkey=tercer_codigo_secreto&st=st_3&raw=1" alt="Foto de Sesión 6">
-            </div>
-
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/lbqqa7z59e65fc8yrm0ia/Fotos_4_de_Mayo_2025_Fiestas_ECP_-1.jpg?rlkey=lucq04d2thxcuv17w1ra40vg8&st=7ggrumpi&raw=1" alt="Foto de Sesión 7">
-            </div>
-
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/ot62i0d0n0l9v62x9o4u1/Foto_2.jpg?rlkey=otro_codigo_secreto&st=st_2&raw=1" alt="Foto de Sesión 8">
-            </div>
-            
-            <div class="photo-card">
-                <img src="https://www.dropbox.com/scl/fi/p5q8k3f1m1r8w73y0p5v2/Foto_3.jpg?rlkey=tercer_codigo_secreto&st=st_3&raw=1" alt="Foto de Sesión 9">
-            </div>
-            
+    <div class="hero" id="inicio">
+        <div class="hero-content">
+            <h2>Capturando vuestra historia</h2>
+            <p>Fotografía de Boda, Pareja y Familia</p>
+            <a href="#contacto" class="cta-button">PIDE PRESUPUESTO</a>
         </div>
     </div>
     
+    <div class="container">
+
+        <section class="about" id="sobre-mi">
+            <div class="about-image">
+                <img src="assets/images/photographer_placeholder.jpg" alt="Retrato de Esteban Campos">
+            </div>
+            <div class="about-text">
+                <h3>Mi Filosofía</h3>
+                <p>Mi objetivo es ir más allá de la simple documentación. Busco capturar la emoción genuina, la luz perfecta y los pequeños momentos que hacen vuestra historia única. Creo firmemente que las mejores fotografías son aquellas que, al mirarlas, os transportan de vuelta a ese sentimiento exacto.</p>
+                <p>Trabajo con una estética atemporal, donde la elegancia se encuentra con la naturalidad. Estaré allí para guiaros y convertirme en un apoyo tranquilo durante vuestro gran día, asegurando que vuestros recuerdos sean tan hermosos como los vivisteis.</p>
+            </div>
+        </section>
+
+        </div>
+
     <footer>
-        <div class="footer-logo">Esteban Campos</div>
-        <p class="footer-text">Galería Privada | &copy; 2026. Todos los derechos reservados.</p>
+        <p class="footer-text">&copy; 2025 Esteban Campos. Fotografía. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        // SCRIPT DE PROTECCIÓN: DESHABILITA EL BOTÓN DERECHO
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
 
 </body>
 </html>
