@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Galería Privada: Día de Fatxos 2025 - Esteban Campos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* 🎨 VARIABLES Y ESTILOS BASE */
+        :root {
+            --bg-color-top: #111111;
+            --bg-color-bottom: #000000;
+            --text-main: #FFFFFF;
+            --text-light: #AAAAAA;
+            --accent: #B08D55; 
+            --accent-hover: #D8A967;
+            --font-serif: 'Cormorant Garamond', serif; 
+            --font-sans: 'Montserrat', sans-serif; 
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        body { 
+            font-family: var(--font-sans); 
+            margin: 0; padding: 0; 
+            color: var(--text-main); 
+            background-color: var(--bg-color-top);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px 10%;
+        }
+
+        /* === 1. HEADER / INFO DE LA SESIÓN === */
+        .session-header {
+            text-align: center;
+            padding: 80px 0 60px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .session-header h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5em; 
+            font-weight: 400;
+            font-style: italic;
+            margin: 0 0 10px 0;
+            color: var(--accent-hover);
+        }
+        .session-header p {
+            font-size: 1.1em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* === 2. BOTÓN DE DESCARGA === */
+        .download-container {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: var(--accent);
+            color: var(--bg-color-top);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.9em;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s var(--ease-out), transform 0.3s;
+        }
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+        .download-info {
+            font-size: 0.9em;
+            color: var(--text-light);
+            margin-top: 15px;
+        }
+
+
+        /* === 3. GALERÍA DE FOTOS (Rejilla) === */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; 
+        }
+        .photo-card {
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+        }
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.4s var(--ease-out);
+        }
+        .photo-card img:hover {
+            opacity: 0.85;
+        }
+
+        /* === 4. PIE DE PÁGINA === */
+        footer {
+            background-color: var(--bg-color-bottom);
+            color: #555; 
+            padding: 40px 10%;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            color: var(--text-light);
+            font-size: 0.8em;
+        }
+
+        /* === 5. ESTILOS DEL MODAL/LIGHTBOX === */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 200; 
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.95); 
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 1100px;
+            max-height: 90vh; 
+            object-fit: contain; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 45px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 210;
+        }
+        .close:hover,
+        .close:focus {
+            color: var(--accent-hover);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0 }
+            to { opacity: 1 }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            .session-header h1 { font-size: 2.5em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .close { top: 15px; right: 25px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="session-header">
+        <h1>Día de Fatxos 2025</h1>
+        <p>Galería Privada para **[Nombre del Cliente]**</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="download-container">
+            <a href="assets/images/fatxos/fatxos.zip" 
+               class="cta-button" 
+               target="_blank">
+                DESCARGAR TODAS LAS FOTOS ORIGINALES (ZIP)
+            </a>
+            <p class="download-info">Haga clic una sola vez. La descarga puede tardar unos minutos.</p>
+        </div>
+
+        <div class="gallery-grid" id="photoGallery">
+            </div>
+    </div>
+    
+    <footer>
+        <div class="footer-logo">Esteban Campos</div>
+        <p class="footer-text">Galería Privada | &copy; 2025. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <script>
+        // ✅ SCRIPT 1: DESHABILITAR EL BOTÓN DERECHO (Protección)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // ✅ SCRIPT 2: GENERACIÓN DINÁMICA DE LA GALERÍA (184 FOTOS)
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.getElementById('photoGallery');
+            const totalPhotos = 184;
+            let galleryHTML = '';
+
+            // Bucle para generar las 184 etiquetas <img>
+            for (let i = 1; i <= totalPhotos; i++) {
+                const src = `assets/images/fatxos/fatxos (${i}).jpg`;
+                const alt = `Foto Fatxos ${i}`;
+                
+                galleryHTML += `
+                    <div class="photo-card">
+                        <img src="${src}" alt="${alt}">
+                    </div>
+                `;
+            }
+            // Insertar todo el HTML generado de golpe
+            gallery.innerHTML = galleryHTML;
+
+
+            // ✅ SCRIPT 3: LÓGICA DEL LIGHTBOX (AMPLIACIÓN)
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("img01");
+            // Se debe buscar las imágenes *después* de que se hayan insertado
+            const galleryCards = document.querySelectorAll('.photo-card img');
+            const span = document.getElementsByClassName("close")[0];
+
+            // 1. Abrir Modal
+            galleryCards.forEach(img => {
+                img.addEventListener('click', function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src; 
+                });
+            });
+
+            // 2. Cerrar con el botón (X)
+            span.onclick = function() { 
+                modal.style.display = "none";
+            }
+            
+            // 3. Cerrar al hacer clic en el fondo oscuro
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+            
+            // 4. Cerrar con la tecla ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === "Escape") {
+                    modal.style.display = "none";
+                }
+            });
+        });
+        
+    </script>
+
+</body>
+</html>

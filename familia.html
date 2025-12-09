@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esteban Campos | Comuniones: Fotografía de Legado</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* 🎨 ESTILOS GENERALES (Mismos de la Página Principal) */
+
+        /* ================================================= */
+        /* === 1. VARIABLES DE LUJO (Colores y Fuentes) === */
+        /* ================================================= */
+        :root {
+            --bg-color-top: #111111;    
+            --bg-color-bottom: #000000; 
+            --text-main: #FFFFFF;      
+            --text-light: #AAAAAA;    
+            --accent: #B08D55;         
+            --accent-hover: #D8A967;   
+            --font-serif: 'Cormorant Garamond', serif; 
+            --font-sans: 'Montserrat', sans-serif; 
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1); 
+        }
+
+        /* ------------------------------------------------- */
+        /* === 2. ESTILOS BASE Y FONDO === */
+        /* ------------------------------------------------- */
+        html { scroll-behavior: smooth; }
+        
+        body {   
+            font-family: var(--font-sans);   
+            margin: 0; padding: 0;   
+            color: var(--text-main); 
+            line-height: 1.8;
+            font-weight: 300;
+            overflow-x: hidden;   
+            background-color: var(--bg-color-top);
+            background-attachment: fixed; 
+        }
+
+        body::before {
+            content: '';
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -3;
+            background: radial-gradient(circle, rgba(17, 17, 17, 0) 60%, rgba(0, 0, 0, 0.4) 100%); 
+            pointer-events: none;
+        }
+
+        /* === COMPONENTE: BOTÓN CTA === */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            margin-top: 40px;
+            background: var(--accent);
+            color: var(--bg-color-top);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.8em;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s var(--ease-out), transform 0.3s;
+        }
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* === PRELOADER === */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color-top);
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.8s var(--ease-out);
+        }
+        .preloader-logo {
+            font-family: var(--font-serif); font-size: 1.5em; letter-spacing: 5px; text-transform: uppercase;
+            animation: pulse 2s infinite;
+            color: white; 
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+
+        /* === HEADER === */
+        header {   
+            position: fixed; top: 0; width: 100%; padding: 15px 50px; 
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; 
+            background: rgba(17, 17, 17, 0.95); 
+            color: white; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5); 
+            box-sizing: border-box;
+        }
+        .logo { font-family: var(--font-serif); font-size: 1.4em; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+        
+        nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+        nav a { 
+            text-decoration: none; color: inherit; font-size: 0.75em; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; position: relative;
+        }
+        nav a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px; background: var(--accent); transition: width 0.3s;
+        }
+        nav a:hover::after { width: 100%; }
+
+        /* ------------------------------------------------- */
+        /* === 3. HERO DE PÁGINA ESPECÍFICA === */
+        /* ------------------------------------------------- */
+        .page-hero {
+            height: 60vh; 
+            width: 100%; 
+            position: relative;   
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            overflow: hidden;   
+            padding-top: 50px; 
+        }
+
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('assets/images/comuniones/comunion (1).jpg'); 
+            background-size: cover; 
+            background-position: center 30%; 
+            z-index: 1;   
+        }
+
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            z-index: 10; 
+            text-align: center; 
+            color: #fff;   
+            padding: 0 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.8);
+        }
+        .page-hero-content h1 {
+            font-family: var(--font-serif); 
+            font-size: 4em; 
+            margin: 0; 
+            line-height: 1.1; 
+            font-weight: 400; 
+            font-style: italic;
+        }
+        .page-hero-content p {
+            font-family: var(--font-sans); 
+            font-size: 0.9em; 
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+            margin-top: 15px;
+        }
+
+
+        /* ------------------------------------------------- */
+        /* === 4. SECCIÓN DE GALERÍA DE FOTOS === */
+        /* ------------------------------------------------- */
+        /* REDUCCIÓN DE ESPACIO CLAVE: Eliminamos el padding superior excesivo */
+        .section { padding: 50px 10%; } /* Reducido de 120px a 50px */
+
+        .intro-text { text-align: center; max-width: 800px; margin: 0 auto 50px; } /* Mantenido para el futuro si se necesita */
+        .intro-text h2 { font-family: var(--font-serif); font-size: 3em; margin-bottom: 20px; font-weight: 400; }
+        .intro-text p { color: var(--text-light); font-size: 1.1em; } 
+
+        /* Contenedor de Galería con Layout de Columnas (Masonry) */
+        .photo-gallery {
+            column-count: 3; 
+            column-gap: 20px;
+            margin: 0 auto;
+            padding: 0 10px; 
+        }
+        .photo-item {
+            display: inline-block; 
+            width: 100%;
+            margin-bottom: 20px; 
+            overflow: hidden;
+            break-inside: avoid; 
+            opacity: 0; 
+            transform: translateY(30px);
+            transition: all 0.8s var(--ease-out);
+        }
+        .photo-item:hover img {
+             transform: scale(1.03);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.4s ease-in-out;
+        }
+        
+        /* RESPONSIVE para la galería de fotos */
+        @media (max-width: 1024px) {
+            .photo-gallery { column-count: 2; } 
+            .section { padding: 50px 5%; }
+        }
+        @media (max-width: 600px) {
+            .photo-gallery { column-count: 1; column-gap: 10px; } 
+        }
+
+        /* ESTILOS DE OTRAS SECCIONES (Split y Footer) */
+        .split-section { display: flex; align-items: center; gap: 80px; margin-top: 50px; background-color: var(--bg-color-bottom); padding: 120px 10%; }
+        .split-text { flex: 1; }
+        .split-text p { color: var(--text-light); } 
+        .split-img { flex: 1; position: relative; }
+        .split-img img { width: 100%; display: block; }
+        .split-img::before {
+            content: ''; position: absolute; top: -20px; left: -20px; width: 100%; height: 100%; border: 1px solid var(--accent); 
+            z-index: -1;
+        }
+        footer {
+            background-color: var(--bg-color-bottom);
+            color: #555; 
+            padding: 80px 10% 40px;
+            font-size: 0.9em;
+        }
+        .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 60px; }
+        .footer-brand h4 { color: white; font-family: var(--font-serif); font-size: 1.8em; margin: 0 0 20px; }
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { text-decoration: none; color: #555; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+
+        /* RESPONSIVE GENERAL */
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            .page-hero-content h1 { font-size: 3em; }
+            .split-section { flex-direction: column-reverse; gap: 40px; padding: 80px 20px; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="preloader-logo">Esteban Campos</div>
+    </div>
+
+    <header id="main-header">
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Esteban Campos</a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#portfolio">Historias</a></li>
+                <li><a href="#filosofia-comuniones">Filosofía</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="home" class="page-hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="page-hero-content">
+            <p>SESIONES DE LEGADO</p>
+            <h1>La Primera Gran Historia.</h1>
+            <p>Fotografía de Comuniones con el alma familiar</p>
+            <a href="#galeria" class="cta-button">Ver Galería Completa</a>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="photo-gallery" id="galeria">
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (1).jpg" alt="Comunión Fotografía 1"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (2).jpg" alt="Comunión Fotografía 2"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (3).jpg" alt="Comunión Fotografía 3"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (4).jpg" alt="Comunión Fotografía 4"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (5).jpg" alt="Comunión Fotografía 5"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (6).jpg" alt="Comunión Fotografía 6"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (7).jpg" alt="Comunión Fotografía 7"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (8).jpg" alt="Comunión Fotografía 8"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (9).jpg" alt="Comunión Fotografía 9"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (10).jpg" alt="Comunión Fotografía 10"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (11).jpg" alt="Comunión Fotografía 11"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (12).jpg" alt="Comunión Fotografía 12"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (13).jpg" alt="Comunión Fotografía 13"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (14).jpg" alt="Comunión Fotografía 14"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (15).jpg" alt="Comunión Fotografía 15"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (16).jpg" alt="Comunión Fotografía 16"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (17).jpg" alt="Comunión Fotografía 17"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (18).jpg" alt="Comunión Fotografía 18"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (19).jpg" alt="Comunión Fotografía 19"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (20).jpg" alt="Comunión Fotografía 20"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (21).jpg" alt="Comunión Fotografía 21"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (22).jpg" alt="Comunión Fotografía 22"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (23).jpg" alt="Comunión Fotografía 23"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (24).jpg" alt="Comunión Fotografía 24"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (25).jpg" alt="Comunión Fotografía 25"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (26).jpg" alt="Comunión Fotografía 26"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (27).jpg" alt="Comunión Fotografía 27"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (28).jpg" alt="Comunión Fotografía 28"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (29).jpg" alt="Comunión Fotografía 29"></div>
+            <div class="photo-item"><img src="assets/images/comuniones/comunion (30).jpg" alt="Comunión Fotografía 30"></div>
+            
+        </div>
+        
+        <div style="text-align: center; margin-top: 100px;">
+             <a href="#contact" class="cta-button">Reservar Sesión de Comunión</a>
+        </div>
+    </section>
+
+    <section id="filosofia-comuniones" class="split-section">
+        <div class="split-text">
+            <span style="color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8em; font-weight: 600;">Nuestro Proceso</span>
+            <h2 style="font-family: var(--font-serif); font-size: 2.8em; margin: 15px 0 30px;">Una sesión sin prisas,<br>centrada en su sonrisa.</h2>
+            <p>
+                La Primera Comunión es un hito de transición. Documentamos ese momento con una mezcla de fotografía documental del evento y retratos editoriales que capturan la personalidad de vuestro hijo/a.
+            </p>
+            <p>
+                Trabajo para que el niño se sienta cómodo y libre, capturando la **alegría espontánea**, no solo la pose. El resultado son imágenes atemporales, cargadas de la luz y la ternura de la infancia.
+            </p>
+            <a href="#contact" class="cta-button" style="margin-top: 20px;">Pedir Información de Paquetes</a>
+        </div>
+        <div class="split-img">
+            <img src="assets/images/comuniones/comunion (15).jpg" alt="Filosofía Comuniones">
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h4>ESTEBAN CAMPOS</h4>
+                <p>Creando patrimonio emocional para<br>familias extraordinarias.</p>
+            </div>
+            <div class="footer-links">
+                <p style="color: white; font-weight: 500;">EXPLORAR</p>
+                <ul>
+                    <li><a href="bodas.html">Bodas</a></li>
+                    <li><a href="comuniones.html">Comuniones</a></li>
+                    <li><a href="lifestyle.html">Lifestyle</a></li>
+                    <li><a href="#">Álbumes</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <p style="color: white; font-weight: 500;">CONTACTO</p>
+                <ul>
+                    <li>hola@estebancamposphoto.com</li>
+                    <li>+34 600 000 000</li>
+                    <li>Mallorca, España</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                 <p style="color: white; font-weight: 500;">SOCIAL</p>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #222; padding-top: 30px; display: flex; justify-content: space-between; color: #555;">
+            <span>&copy; 2024 Esteban Campos Photo. Todos los derechos reservados.</span>
+            <span>Diseño Web Consciente</span>
+        </div>
+    </footer>
+
+    <script>
+        // SCRIPT 1: PRELOADER
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 800);
+        });
+
+        // SCRIPT 2: ANIMACIÓN SCROLL (REVEAL)
+        const observerOptions = { threshold: 0.05 }; 
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar la animación a todas las fotos y secciones
+        document.querySelectorAll('.photo-item, .split-section').forEach((el, index) => {
+             // Retraso incremental para las fotos para un efecto de carga en cascada
+             if (el.classList.contains('photo-item')) {
+                 el.style.transitionDelay = `${index * 0.05}s`;
+             }
+             el.style.opacity = '0'; // Reasegurar el estilo inicial
+             el.style.transform = 'translateY(30px)'; // Reasegurar el estilo inicial
+            scrollObserver.observe(el);
+        });
+
+        // NOTA: Se ha eliminado la observación de '.intro-text' ya que fue eliminado del HTML.
+    </script>
+</body>
+</html>

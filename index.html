@@ -3,499 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captured Heirlooms | Psicología de la Fotografía Familiar</title>
     
+    <title>Galería Privada: [Nombre del Cliente] - Esteban Campos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
     <style>
-        /*
-        * CSS AVANZADO (PSICOLOGÍA VISUAL Y CONVERSIÓN)
-        * Tipografía: Suave y Redondeada. Colores: Calidez (Acento) y Estabilidad (Fondo/Detalles).
-        */
-        
-        /* === 1. BASE Y VARIABLES === */
+        /* 🎨 REUTILIZACIÓN DE VARIABLES DE SU INDEX.HTML */
         :root {
-            --color-principal: #333333; /* Texto principal */
-            --color-secundario: #1F2421; /* Verde Oscuro/Negro (Estabilidad) */
-            --color-acento: #B58459;    /* Tostado/Siena (Calidez/Confianza) */
-            --color-fondo: #FDFCFB;    /* Blanco Roto Cálido */
-            --font-suave: 'Quicksand', 'Varela Round', 'Helvetica Neue', Arial, sans-serif; 
+            --bg-color-top: #111111;
+            --bg-color-bottom: #000000;
+            --text-main: #FFFFFF;
+            --text-light: #AAAAAA;
+            --accent: #B08D55; 
+            --accent-hover: #D8A967;
+            --font-serif: 'Cormorant Garamond', serif; 
+            --font-sans: 'Montserrat', sans-serif; 
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
         }
 
+        /* ESTILOS BASE */
         body { 
-            font-family: var(--font-suave); 
-            margin: 0; 
-            padding: 0; 
-            background-color: var(--color-fondo); 
-            color: var(--color-principal);
+            font-family: var(--font-sans); 
+            margin: 0; padding: 0; 
+            color: var(--text-main); 
+            background-color: var(--bg-color-top);
             line-height: 1.6;
-            font-size: 16px;
-        }
-        .container { 
-            width: 100%; 
-            max-width: 1300px; 
-            margin: 0 auto; 
-            padding: 0 20px;
-            box-sizing: border-box; 
+            min-height: 100vh;
         }
         
-        /* === 2. CABECERA Y NAVEGACIÓN === */
-        header { 
-            background-color: #ffffff; 
-            border-bottom: 1px solid #eee;
-            padding: 15px 0; 
-            position: sticky; 
-            top: 0;
-            z-index: 100;
-        }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo { 
-            font-family: var(--font-suave);
-            font-size: 1.2em; 
-            font-weight: 700; 
-            letter-spacing: 1px;
-            color: var(--color-acento);
-        }
-        
-        nav ul { 
-            list-style: none; 
-            padding: 0; 
-            margin: 0; 
-            display: flex;
-            overflow-x: auto; 
-            white-space: nowrap;
-        }
-        nav ul li a { 
-            font-family: var(--font-suave);
-            text-decoration: none; 
-            color: var(--color-principal); 
-            padding: 0 10px; 
-            font-size: 0.8em;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-        nav ul li a:hover {
-            color: var(--color-acento);
-        }
-        
-        /* === 3. HERO SLIDESHOW (IMPACTO VISUAL Y EMOCIONAL) === */
-        .hero-slideshow {
-            position: relative;
-            width: 100%;
-            height: 60vh; /* Altura ajustada */
-            overflow: hidden;
-        }
-        .hero-slideshow::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3); /* Velo más sutil en el fondo */
-            z-index: 4;
-        }
-        /* ... estilos de slide y hero-content se mantienen ... */
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0; 
-            transition: opacity 2s ease-in-out; 
-        }
-        .slide.active {
-            opacity: 1; 
-        }
-        .hero-content { 
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); 
-            color: white;
-            text-align: center;
-            z-index: 5; 
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); 
-            width: 90%;
-        }
-        .hero-content h1 {
-            font-family: var(--font-suave);
-            font-size: 2.3em; 
-            margin-bottom: 5px;
-            font-weight: 500; 
-        }
-        .hero-content p {
-            font-size: 1em;
-            margin-bottom: 30px;
-            letter-spacing: 5px; 
-            text-transform: uppercase;
-        }
-        .hero-content button {
-            background-color: var(--color-acento); 
-            color: white;
-            border: none;
-            padding: 12px 40px;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            border-radius: 5px; 
-        }
-
-        /* === 4. SECCIÓN DE ENFOQUE (MÉTODO - Validación) === */
-        .values-intro {
-            background-color: #ffffff;
-            padding: 60px 0; 
-            text-align: center;
-        }
-        .values-intro h2 {
-            font-family: var(--font-suave); 
-            font-size: 2em; 
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        .values-intro p {
-            font-size: 1em; 
-            padding: 0 10px;
-        }
-
-        /* === 5. PRUEBA SOCIAL (CONFIANZA Y AUTORIDAD) === */
-        .testimonials-section {
-            background-color: var(--color-secundario); /* Color oscuro para estabilidad */
-            color: #fff;
-            padding: 70px 0;
-            text-align: center;
-        }
-        .testimonials-section h2 {
-            font-family: var(--font-suave);
-            font-size: 2.2em;
-            margin-bottom: 40px;
-            color: var(--color-acento);
-            font-weight: 500;
-        }
-        .testimonial-card {
-            max-width: 700px;
+        /* CONTENEDOR PRINCIPAL */
+        .container {
+            max-width: 1300px;
             margin: 0 auto;
+            padding: 40px 10%;
+        }
+
+        /* === 1. HEADER / INFO DE LA SESIÓN === */
+        .session-header {
+            text-align: center;
+            padding: 80px 0 60px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .session-header h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5em; /* Grande y de lujo, como su H1 */
+            font-weight: 400;
             font-style: italic;
+            margin: 0 0 10px 0;
+            color: var(--accent-hover);
+        }
+        .session-header p {
             font-size: 1.1em;
-            line-height: 1.8;
-            padding: 0 20px;
-        }
-        .testimonial-card p:last-child {
-            margin-top: 20px;
-            font-weight: 600;
-            color: #ddd;
-        }
-        
-        /* === 6. GALERÍA (JERARQUÍA VISUAL) === */
-        .gallery-preview { 
-            padding: 40px 0;
-        }
-        .gallery-preview h2 {
-            font-family: var(--font-suave); 
-            font-weight: 500; 
-            font-size: 2.2em; 
-            margin-bottom: 40px; 
-            text-align: center;
-        }
-        .gallery-modules {
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 40px;
-        }
-        .gallery-item img { 
-            width: 100%; 
-            height: auto; 
-            max-height: 400px;
-            object-fit: cover; 
-            margin-bottom: 15px;
-            border-bottom: 3px solid var(--color-acento); 
-            border-radius: 3px; 
-        }
-        .gallery-item h3 {
-            font-family: var(--font-suave);
-            font-size: 1.5em;
-            color: var(--color-acento);
-            margin-bottom: 0;
-            font-weight: 600;
-        }
-
-        /* === 7. LLAMADO A LA ACCIÓN FINAL (RECENCIA Y CONVERSIÓN) === */
-        .cta-final {
-            background-color: var(--color-principal); 
-            padding: 70px 0;
-            text-align: center;
-        }
-        .cta-final h2 {
-            font-family: var(--font-suave);
-            font-size: 2.5em;
-            color: white;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        .cta-final p {
-            font-size: 1em;
-            color: #ccc;
-            margin-bottom: 30px;
-        }
-        .cta-final button {
-            background-color: var(--color-acento);
-            color: white;
-            border: none;
-            padding: 15px 50px;
-            font-size: 1em;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            border-radius: 5px; 
+            color: var(--text-light);
+            margin: 0;
         }
 
-        /* === 8. PIE DE PÁGINA === */
-        footer { 
-            background-color: var(--color-secundario); /* Color oscuro para mayor estabilidad y profesionalismo */
-            color: #eee; 
-            padding: 40px 0; 
+        /* === 2. BOTÓN DE DESCARGA (Reutiliza el estilo CTA) === */
+        .download-container {
+            text-align: center;
+            margin-bottom: 60px;
         }
-        .footer-content {
-            display: flex;
-            flex-direction: column; 
-            gap: 20px;
-        }
-        .footer-section {
-            width: 100%; 
-        }
-        .footer-section h4 {
-            font-family: var(--font-suave);
-            color: var(--color-acento); 
-            margin-bottom: 10px;
-            font-size: 1em;
+        .cta-button {
+            /* Copiado de su index.css */
+            display: inline-block;
+            padding: 18px 45px;
+            background: var(--accent);
+            color: var(--bg-color-top);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: 600;
+            font-size: 0.9em;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s var(--ease-out), transform 0.3s;
         }
-        .footer-section a {
-             color: #ccc;
-             text-decoration: none;
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
         }
-        .footer-bottom {
-            padding-top: 15px;
+        .download-info {
+            font-size: 0.9em;
+            color: var(--text-light);
             margin-top: 15px;
+        }
+
+
+        /* === 3. GALERÍA DE FOTOS (Rejilla) === */
+        .gallery-grid {
+            display: grid;
+            /* Se ajusta a 4 columnas en desktop y baja a 2 o 1 en móvil */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; /* Separación entre fotos */
+        }
+        .photo-card {
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra oscura para profundidad */
+        }
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.4s var(--ease-out);
+        }
+        .photo-card img:hover {
+            opacity: 0.85;
+        }
+
+        /* === 4. PIE DE PÁGINA === */
+        footer {
+            background-color: var(--bg-color-bottom);
+            color: #555; 
+            padding: 40px 10%;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            color: var(--text-light);
             font-size: 0.8em;
-            border-top: 1px solid #444;
         }
 
-
-        /* ======================================================= */
-        /* === MEDIA QUERY: OPTIMIZACIÓN PARA ESCRITORIO (>768px) === */
-        /* ======================================================= */
-        @media (min-width: 768px) {
-            
-            /* Hero */
-            .hero-slideshow {
-                height: 65vh; 
-            }
-            .hero-content h1 {
-                font-size: 4em; 
-            }
-            .hero-content p {
-                font-size: 1.2em;
-                letter-spacing: 8px; 
-            }
-            
-            /* Enfoque/Valores */
-            .values-intro {
-                padding: 100px 0;
-            }
-            .values-intro h2 {
-                font-size: 2.5em;
-            }
-            
-            /* Testimonios */
-            .testimonials-section {
-                padding: 100px 0;
-            }
-            .testimonials-section h2 {
-                font-size: 2.5em;
-            }
-
-            /* Galería */
-            .gallery-preview { 
-                padding: 40px 0 80px;
-            }
-            .gallery-modules {
-                grid-template-columns: repeat(3, 1fr); 
-            }
-            .gallery-item img { 
-                height: 400px; 
-            }
-
-            /* Llamado a la Acción */
-            .cta-final h2 {
-                font-size: 3em;
-            }
-
-            /* Footer */
-            .footer-content {
-                flex-direction: row; 
-            }
-            .footer-section {
-                width: 20%;
-            }
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            .session-header h1 { font-size: 2.5em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
         }
+
     </style>
 </head>
-
 <body>
 
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <img src="ruta/a/tu/logo.png" alt="Logo de Captured Heirlooms" class="logo-img"> CAPTURED HEIRLOOMS
-            </div>
-            
-            <nav>
-                <ul>
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#intro">ENFOQUE</a></li>
-                    <li><a href="#testimonials">CONFIANZA</a></li>
-                    <li><a href="#gallery-preview">SESIONES</a></li>
-                    <li><a href="#cta-final">RESERVAR</a></li>
-                    <li><a href="#contact">CONTACTO</a></li>
-                </ul>
-            </nav>
+    <div class="session-header">
+        <h1>Comunión de Marina (2026)</h1>
+        <p>Galería Privada para **Familia García**</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="download-container">
+            <a href="https://www.dropbox.com/scl/fi/ARCHIVOS_FINALES_ZIP/Marina_Comunion_2026.zip?rlkey=CLAVE_DEL_ZIP_MARINA&st=ST_MARINA&dl=1" 
+               class="cta-button" 
+               target="_blank">
+                DESCARGAR TODAS LAS FOTOS ORIGINALES (ZIP)
+            </a>
+            <p class="download-info">Haga clic una sola vez. La descarga puede tardar unos minutos.</p>
         </div>
-    </header>
 
-    <main>
-        
-        <section class="hero-slideshow" id="home">
+        <div class="gallery-grid">
             
-            <div class="slide active" style="background-image: url('ruta/a/tu/imagen/slide1.jpg');"></div>
-            <div class="slide" style="background-image: url('ruta/a/tu/imagen/slide2.jpg');"></div>
-            <div class="slide" style="background-image: url('ruta/a/tu/imagen/slide3.jpg');"></div>
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/lbqqa7z59e65fc8yrm0ia/Fotos_4_de_Mayo_2025_Fiestas_ECP_-1.jpg?rlkey=lucq04d2thxcuv17w1ra40vg8&st=7ggrumpi&raw=1" alt="Foto de Sesión 1">
+            </div>
+
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/ot62i0d0n0l9v62x9o4u1/Foto_2.jpg?rlkey=otro_codigo_secreto&st=st_2&raw=1" alt="Foto de Sesión 2">
+            </div>
+
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/p5q8k3f1m1r8w73y0p5v2/Foto_3.jpg?rlkey=tercer_codigo_secreto&st=st_3&raw=1" alt="Foto de Sesión 3">
+            </div>
             
-            <div class="hero-content">
-                <h1>Detenemos el Tiempo de Vuestra Familia.</h1>
-                <p>AUTENTICIDAD VISUAL Y VÍNCULO SINCERO.</p>
-                <button onclick="location.href='#intro'">DESCUBRE NUESTRO ENFOQUE</button>
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/lbqqa7z59e65fc8yrm0ia/Fotos_4_de_Mayo_2025_Fiestas_ECP_-1.jpg?rlkey=lucq04d2thxcuv17w1ra40vg8&st=7ggrumpi&raw=1" alt="Foto de Sesión 4">
             </div>
-        </section>
-        
-        <section class="values-intro" id="intro">
-            <div class="container">
-                <h2>Visualizamos cada momento para el recuerdo.</h2>
-                <p>
-                    Nuestro método profesional congela el pulso de vuestra vida sin poses. No son solo fotos; son <strong>anclas visuales</strong> de lo que sentís hoy. El mayor tesoro para la herencia emocional de vuestros hijos.
-                </p>
-            </div>
-        </section>
 
-        <section class="testimonials-section" id="testimonials">
-            <div class="container">
-                <h2>Lo que Dicen Otras Familias</h2>
-                <div class="testimonial-card">
-                    <p>"Nunca pensamos que el reportaje sería tan fácil y natural. Las fotos nos recuerdan exactamente el amor y el caos hermoso de esa etapa. Un trabajo que vale cada céntimo."</p>
-                    <p>— Familia García, Madrid.</p>
-                </div>
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/ot62i0d0n0l9v62x9o4u1/Foto_2.jpg?rlkey=otro_codigo_secreto&st=st_2&raw=1" alt="Foto de Sesión 5">
             </div>
-        </section>
 
-        <section class="gallery-preview" id="gallery-preview">
-            <div class="container">
-                 <h2>El Vínculo en Primer Plano</h2>
-                <div class="gallery-modules">
-                    
-                    <div class="gallery-item">
-                        <img src="placeholder-familia.jpg" alt="Reportaje Familiar Auténtico">
-                        <h3>REPORTAJE LIFESTYLE</h3>
-                        <p>La esencia de vuestro hogar.</p>
-                    </div>
-                    
-                    <div class="gallery-item">
-                        <img src="placeholder-maternidad.jpg" alt="Sesión de Maternidad y Vínculo">
-                        <h3>MATERNIDAD & VÍNCULO</h3>
-                        <p>Documentando la espera y el encuentro.</p>
-                    </div>
-                    
-                    <div class="gallery-item">
-                        <img src="placeholder-crecimiento.jpg" alt="Sesiones de Crecimiento Natural">
-                        <h3>RECUERDOS DE CRECIMIENTO</h3>
-                        <p>Sin prisas, con toda la verdad.</p>
-                    </div>
-                </div>
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/p5q8k3f1m1r8w73y0p5v2/Foto_3.jpg?rlkey=tercer_codigo_secreto&st=st_3&raw=1" alt="Foto de Sesión 6">
             </div>
-        </section>
 
-        <section class="cta-final" id="cta-final">
-            <div class="container">
-                <h2>El Mejor Momento para Invertir es Ahora.</h2>
-                <p>Cada día cuenta una historia que mañana será invaluable.</p>
-                <button onclick="location.href='#'">SOLICITAR LA GUÍA COMPLETA</button>
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/lbqqa7z59e65fc8yrm0ia/Fotos_4_de_Mayo_2025_Fiestas_ECP_-1.jpg?rlkey=lucq04d2thxcuv17w1ra40vg8&st=7ggrumpi&raw=1" alt="Foto de Sesión 7">
             </div>
-        </section>
-        
-    </main>
 
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/ot62i0d0n0l9v62x9o4u1/Foto_2.jpg?rlkey=otro_codigo_secreto&st=st_2&raw=1" alt="Foto de Sesión 8">
+            </div>
+            
+            <div class="photo-card">
+                <img src="https://www.dropbox.com/scl/fi/p5q8k3f1m1r8w73y0p5v2/Foto_3.jpg?rlkey=tercer_codigo_secreto&st=st_3&raw=1" alt="Foto de Sesión 9">
+            </div>
+            
+        </div>
+    </div>
+    
     <footer>
-        <div class="container footer-content">
-            
-            <div class="footer-section">
-                <div class="logo footer-logo" style="margin-bottom: 5px;">
-                    <img src="ruta/a/tu/logo.png" alt="Logo" class="logo-img"> CAPTURED HEIRLOOMS
-                </div>
-                <p style="color: #bbb; line-height: 1.4; font-size: 0.9em;">Reportaje de Familia basado en la Psicología Visual.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>ENLACES RÁPIDOS</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#intro">Enfoque</a></li>
-                    <li><a href="#gallery-preview">Portafolio</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>CONTACTO</h4>
-                <p style="color: #bbb;">hola@capturedheirlooms.com</p>
-                <p style="color: #bbb;">+34 123 456 789</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>REDES</h4>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2023 Captured Heirlooms.
-        </div>
+        <div class="footer-logo">Esteban Campos</div>
+        <p class="footer-text">Galería Privada | &copy; 2026. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.hero-slideshow .slide');
-
-        function showSlides() {
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
-
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-            
-            slides[slideIndex - 1].classList.add('active');
-            
-            // Ritmo constante y profesional
-            setTimeout(showSlides, 7000); 
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-             if (slides.length > 0) {
-                 showSlides();
-             }
-        });
-    </script>
 </body>
 </html>
