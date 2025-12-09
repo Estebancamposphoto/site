@@ -3,35 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esteban Campos | Fotografía de Boda y Eventos</title>
+    <title>Esteban Campos | Fotografía de Boda, Familia y Eventos</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* 🎨 VARIABLES GLOBALES DE ESTILO */
+        /* 🎨 ESTILOS GENERALES Y VARIABLES (Basado en tu código) */
         :root {
-            --bg-color-top: #111111;
-            --bg-color-bottom: #000000;
-            --text-main: #FFFFFF;
-            --text-light: #AAAAAA;
-            --accent: #B08D55; 
-            --accent-hover: #D8A967;
+            --bg-color-top: #111111;    
+            --bg-color-bottom: #000000; 
+            --text-main: #FFFFFF;       
+            --text-light: #AAAAAA;      
+            --accent: #B08D55;          
+            --accent-hover: #D8A967;    
             --font-serif: 'Cormorant Garamond', serif; 
             --font-sans: 'Montserrat', sans-serif; 
-            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1); 
         }
 
-        /* ESTILOS BASE */
-        body { 
-            font-family: var(--font-sans); 
-            margin: 0; padding: 0; 
+        /* ------------------------------------------------- */
+        /* === ESTILOS BASE Y PROTECCIÓN ANTI-COPIA === */
+        /* ------------------------------------------------- */
+        html { scroll-behavior: smooth; }
+        
+        body {   
+            font-family: var(--font-sans);   
+            margin: 0; padding: 0;   
             color: var(--text-main); 
+            line-height: 1.8;
+            font-weight: 300;
+            overflow-x: hidden;     
             background: linear-gradient(180deg, var(--bg-color-top) 0%, var(--bg-color-bottom) 100%);
-            line-height: 1.6;
-            min-height: 100vh;
+            background-attachment: fixed; 
+            
+            /* 🔒 Estilos Anti-Copia: Deshabilita la selección de texto */
+            -webkit-user-select: none;  
+            -moz-user-select: none;     
+            -ms-user-select: none;      
+            user-select: none;          
         }
+        
+        /* 🔒 Evita que las imágenes sean arrastrables */
+        img { pointer-events: none; }
 
         /* CONTENEDOR PRINCIPAL */
         .container {
@@ -40,68 +55,99 @@
             padding: 20px;
         }
 
+        /* ------------------------------------------------- */
         /* === 1. ENCABEZADO Y MENÚ === */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(17, 17, 17, 0.9);
+        /* ------------------------------------------------- */
+        header { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            padding: 15px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 100; /* Asegura que esté sobre el slideshow */
+            background: rgba(17, 17, 17, 0.95); 
+            color: white; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5); 
+            box-sizing: border-box; 
         }
-        .logo {
-            font-family: var(--font-serif);
-            font-size: 1.8em;
-            font-weight: 300;
-            color: var(--accent);
+        .logo { 
+            font-family: var(--font-serif); 
+            font-size: 1.8em; 
+            letter-spacing: 2px; 
+            font-weight: 300; 
+            color: var(--accent); 
             text-decoration: none;
-            letter-spacing: 2px;
+            text-transform: uppercase; 
         }
-        nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin-left: 30px;
-            text-transform: uppercase;
-            font-size: 0.9em;
-            letter-spacing: 1px;
+        
+        nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+        nav a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-size: 0.8em; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: 500; 
+            position: relative; 
             transition: color 0.3s;
         }
         nav a:hover {
             color: var(--accent-hover);
         }
+        nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px; background: var(--accent); transition: width 0.3s; }
+        nav a:hover::after { width: 100%; }
 
-        /* === 2. SECCIÓN HERO (PORTADA) === */
-        .hero {
-            height: 80vh; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: url('assets/images/hero_placeholder.jpg') no-repeat center center/cover;
-            color: var(--text-main);
+        /* ------------------------------------------------- */
+        /* === 2. SLIDESHOW HERO (FULL SCREEN) === */
+        /* ------------------------------------------------- */
+        .slideshow-container {
+            height: 100vh; /* ⬅️ AHORA OCUPA TODA LA PANTALLA */
+            width: 100%;
             position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* SE ELIMINA EL PADDING SUPERIOR */
         }
-        .hero::after {
-            content: '';
+        .slide {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4); 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s var(--ease-out);
             z-index: 1;
         }
-        .hero-content {
-            z-index: 2;
+        .slide.active {
+            opacity: 1;
         }
-        .hero h2 {
+        
+        .hero-overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: 2; 
+        }
+        .hero-content {
+            z-index: 10;
+            text-align: center;
+            /* Para asegurar que el texto no quede debajo del header en móviles */
+            padding-top: 50px; 
+        }
+        .hero-content h2 {
             font-family: var(--font-serif);
             font-size: 5em;
             font-weight: 400;
             margin-bottom: 10px;
             line-height: 1;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.9);
         }
-        .hero p {
+        .hero-content p {
             font-family: var(--font-sans);
             font-size: 1.2em;
             letter-spacing: 5px;
@@ -109,144 +155,242 @@
             color: var(--text-light);
             margin-top: 0;
         }
-        .cta-button {
-            display: inline-block;
-            padding: 15px 35px;
-            background: var(--accent);
-            color: var(--bg-color-top);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: background 0.3s var(--ease-out), transform 0.3s;
+        /* ESTILO DEL BOTÓN ELIMINADO */
+        
+        /* ------------------------------------------------- */
+        /* === 3. SECCIÓN DE CATEGORÍAS (Mantenida) === */
+        /* ------------------------------------------------- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 80px 10%;
+            text-align: center;
         }
-        .cta-button:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        /* === 3. SECCIÓN SOBRE MÍ === */
-        .about {
-            padding: 80px 0;
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-        .about-image {
-            flex: 1;
-            max-width: 400px;
+        .category-card {
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        .about-image img {
-            width: 100%;
+            height: 350px;
+            text-decoration: none;
             display: block;
         }
-        .about-text {
-            flex: 2;
-            padding-right: 20px;
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease-out;
+            filter: grayscale(80%);
         }
-        .about-text h3 {
+        .category-card:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        .card-info {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--text-main);
+            z-index: 5;
+        }
+        .card-info h3 {
             font-family: var(--font-serif);
-            font-size: 3em;
-            font-weight: 400;
+            margin: 0;
+            font-size: 1.8em;
+            letter-spacing: 1px;
             color: var(--accent);
-            margin-bottom: 20px;
         }
-        .about-text p {
-            color: var(--text-light);
-            font-size: 1.05em;
-            margin-bottom: 20px;
+        .card-info p {
+            margin: 0;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
         
-        /* === 4. PIE DE PÁGINA === */
-        footer {
-            background-color: var(--bg-color-bottom);
-            color: #555; 
-            padding: 40px 0;
-            text-align: center;
+        /* ------------------------------------------------- */
+        /* === 4. PIE DE PÁGINA (Mantenido) === */
+        /* ------------------------------------------------- */
+        footer { 
+            background-color: var(--bg-color-bottom); 
+            color: var(--text-light); 
+            padding: 80px 10% 40px; 
+            font-size: 0.9em; 
             margin-top: 50px;
         }
-        .footer-text {
-            color: var(--text-light);
-            font-size: 0.8em;
-            letter-spacing: 1px;
-        }
-
+        .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 60px; }
+        .footer-brand h4 { color: white; font-family: var(--font-serif); font-size: 1.8em; margin: 0 0 20px; }
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { text-decoration: none; color: var(--text-light); transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-copy { text-align: center; color: #555; font-size: 0.8em; margin-top: 30px;}
 
         /* RESPONSIVE DESIGN */
+        @media (max-width: 1200px) {
+             .category-grid { grid-template-columns: repeat(2, 1fr); padding: 80px 5%; }
+        }
         @media (max-width: 900px) {
-            .about {
-                flex-direction: column;
-                text-align: center;
-            }
-            .about-image, .about-text {
-                max-width: 100%;
-                padding-right: 0;
-            }
-            .hero h2 {
-                font-size: 3.5em;
-            }
-            .hero p {
-                font-size: 1em;
-                letter-spacing: 3px;
-            }
+            header { padding: 15px 20px; }
+            .hero-content h2 { font-size: 3.5em; }
+            .hero-content p { font-size: 1em; letter-spacing: 3px; }
+            nav { display: none; }
+            .footer-top { flex-direction: column; }
         }
         @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                padding: 15px;
-            }
-            nav a {
-                margin: 0 10px;
-            }
+             .hero-content h2 { font-size: 2.5em; }
+             .category-grid { grid-template-columns: 1fr; padding: 40px 5%; }
+             .category-card { height: 250px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">Esteban Campos</a>
+        <a href="index.html" class="logo">Esteban Campos</a>
         <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#portafolio">Portafolio</a>
-            <a href="#sobre-mi">Sobre Mí</a>
-            <a href="#contacto">Contacto</a>
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="boda.html">BODA</a></li>
+                <li><a href="comuniones.html">COMUNIONES</a></li>
+                <li><a href="familia.html">FAMILIA</a></li>
+                <li><a href="maternidad.html">MATERNIDAD</a></li>
+                <li><a href="fiestas.html">FIESTAS</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+            </ul>
         </nav>
     </header>
 
-    <div class="hero" id="inicio">
+    <div class="slideshow-container" id="slideshow-container">
+        
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h2>Capturando vuestra historia</h2>
             <p>Fotografía de Boda, Pareja y Familia</p>
-            <a href="#contacto" class="cta-button">PIDE PRESUPUESTO</a>
-        </div>
+            </div>
     </div>
     
-    <div class="container">
+    <section class="category-grid">
 
-        <section class="about" id="sobre-mi">
-            <div class="about-image">
-                <img src="assets/images/photographer_placeholder.jpg" alt="Retrato de Esteban Campos">
+        <a href="comuniones.html" class="category-card">
+            <img src="assets/images/comuniones/comunion (1).jpg" alt="Comuniones">
+            <div class="card-info">
+                <h3>Comunión</h3>
+                <p>Elegancia y Espiritualidad</p>
             </div>
-            <div class="about-text">
-                <h3>Mi Filosofía</h3>
-                <p>Mi objetivo es ir más allá de la simple documentación. Busco capturar la emoción genuina, la luz perfecta y los pequeños momentos que hacen vuestra historia única. Creo firmemente que las mejores fotografías son aquellas que, al mirarlas, os transportan de vuelta a ese sentimiento exacto.</p>
-                <p>Trabajo con una estética atemporal, donde la elegancia se encuentra con la naturalidad. Estaré allí para guiaros y convertirme en un apoyo tranquilo durante vuestro gran día, asegurando que vuestros recuerdos sean tan hermosos como los vivisteis.</p>
-            </div>
-        </section>
+        </a>
 
-        </div>
+        <a href="familia.html" class="category-card">
+            <img src="assets/images/familia/familia (5).jpg" alt="Familia">
+            <div class="card-info">
+                <h3>Familia</h3>
+                <p>El Vínculo del Hogar</p>
+            </div>
+        </a>
+        
+        <a href="fiestas.html" class="category-card">
+            <img src="assets/images/fiestas/fiesta (3).jpg" alt="Fiestas">
+            <div class="card-info">
+                <h3>Fiestas</h3>
+                <p>Eventos y Celebraciones</p>
+            </div>
+        </a>
+        
+        <a href="boda.html" class="category-card">
+            <img src="assets/images/boda/boda (4).jpg" alt="Boda y Otros">
+            <div class="card-info">
+                <h3>Boda & Otros</h3>
+                <p>Reportajes Personalizados</p>
+            </div>
+        </a>
+
+    </section>
 
     <footer>
-        <p class="footer-text">&copy; 2025 Esteban Campos. Fotografía. Todos los derechos reservados.</p>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h4>Esteban Campos Photo</h4>
+                <p style="color: var(--text-light);">Elegancia, Vínculo y Emoción Auténtica.</p>
+            </div>
+            <div class="footer-links">
+                <h4 style="color: var(--accent); font-size: 1em; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 2px;">Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="boda.html">Boda</a></li>
+                    <li><a href="comuniones.html">Comuniones</a></li>
+                    <li><a href="familia.html">Familia</a></li>
+                    <li><a href="fiestas.html">Fiestas</a></li>
+                </ul>
+            </div>
+            <div class="footer-links" id="contacto">
+                 <h4 style="color: var(--accent); font-size: 1em; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 2px;">Contacto</h4>
+                <p style="color: var(--text-light); margin-bottom: 5px;">hola@estebancamposphoto.com</p>
+                <p style="color: var(--text-light);">+34 123 456 789</p>
+            </div>
+        </div>
+        <div class="footer-copy">
+            &copy; 2025 Esteban Campos. Fotografía. Todos los derechos reservados.
+        </div>
     </footer>
 
     <script>
         // SCRIPT DE PROTECCIÓN: DESHABILITA EL BOTÓN DERECHO
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
+        });
+
+        // -------------------------------------------------
+        // SLIDESHOW SCRIPT
+        // -------------------------------------------------
+        const slides = [
+            // Rutas de ejemplo para el Slideshow (mezcla de categorías)
+            'assets/images/boda/boda (5).jpg', 
+            'assets/images/comuniones/comunion (5).jpg', 
+            'assets/images/familia/familia (5).jpg', 
+            'assets/images/fiestas/fiesta (5).jpg',
+            'assets/images/maternidad/maternidad (5).jpg'
+        ];
+        let currentSlide = 0;
+        const slideDuration = 5000; // 5 segundos
+
+        function initSlideshow() {
+            const container = document.getElementById('slideshow-container');
+            
+            // 1. Insertar las imágenes como elementos div.slide
+            slides.forEach((url, index) => {
+                const div = document.createElement('div');
+                div.className = 'slide';
+                div.style.backgroundImage = `url('${url}')`;
+                
+                // Asegurar que el primer slide esté activo
+                if (index === 0) {
+                    div.classList.add('active');
+                }
+                
+                // Insertar el slide antes del overlay y el contenido (z-index 2 y 10)
+                const overlay = container.querySelector('.hero-overlay');
+                container.insertBefore(div, overlay);
+            });
+            
+            // 2. Iniciar el ciclo de transición
+            setInterval(nextSlide, slideDuration);
+        }
+
+        function nextSlide() {
+            const allSlides = document.querySelectorAll('.slide');
+            
+            // Desactivar el slide actual
+            allSlides[currentSlide].classList.remove('active');
+            
+            // Calcular el índice del siguiente slide
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Activar el siguiente slide
+            allSlides[currentSlide].classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar el slideshow cuando la página esté cargada
+            initSlideshow();
         });
     </script>
 
