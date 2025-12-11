@@ -22,10 +22,10 @@
         :root {
             --bg-color-top: #111111;    
             --bg-color-bottom: #000000; 
-            --text-main: #FFFFFF;      
-            --text-light: #AAAAAA;    
-            --accent: #B08D55;         
-            --accent-hover: #D8A967;   
+            --text-main: #FFFFFF;       
+            --text-light: #AAAAAA;      
+            --accent: #B08D55;          
+            --accent-hover: #D8A967;    
             --font-serif: 'Cormorant Garamond', serif; 
             --font-sans: 'Montserrat', sans-serif; 
             --ease-out: cubic-bezier(0.23, 1, 0.32, 1); 
@@ -36,15 +36,15 @@
         /* ------------------------------------------------- */
         html { scroll-behavior: smooth; }
         
-        body {   
-            font-family: var(--font-sans);   
-            margin: 0; padding: 0;   
-            color: var(--text-main); 
+        body {    
+            font-family: var(--font-sans);    
+            margin: 0; padding: 0;    
+            color: var(--text-main);  
             line-height: 1.8;
             font-weight: 300;
-            overflow-x: hidden;   
+            overflow-x: hidden;    
             background-color: var(--bg-color-top);
-            background-attachment: fixed; 
+            background-attachment: fixed;  
             
             /* 🔒 Estilos Anti-Copia: Deshabilita la selección de texto */
             -webkit-user-select: none;  
@@ -57,8 +57,41 @@
         img { pointer-events: none; }
 
         /* HEADER */
-        header { position: fixed; top: 0; width: 100%; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(17, 17, 17, 0.95); color: white; box-shadow: 0 2px 20px rgba(0,0,0,0.5); box-sizing: border-box; }
-        .logo { font-family: var(--font-serif); font-size: 1.4em; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+        header { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            padding: 15px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 100; /* Asegura que esté sobre el slideshow */
+            background: rgba(17, 17, 17, 0.95); 
+            color: white; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5); 
+            box-sizing: border-box; 
+        }
+        
+        /* ⬇️ NUEVOS ESTILOS PARA EL LOGO Y EL TEXTO ⬇️ */
+        .logo a {
+            /* Estilos para el texto "Esteban Campos" */ 
+            font-family: var(--font-serif); 
+            font-size: 1.8em; 
+            letter-spacing: 2px; 
+            font-weight: 300; 
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase; 
+        }
+
+        .logo-img {
+            /* Estilos para el Monograma EC */
+            height: 50px; /* Altura del logo. Puedes ajustarla. */
+            width: auto; 
+            display: block;
+        }
+        /* ⬆️ FIN DE NUEVOS ESTILOS ⬆️ */
+
         .cta-button {
             display: inline-block; padding: 15px 35px; margin-top: 40px; background: var(--accent); color: var(--bg-color-top);
             text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 0.8em;
@@ -162,13 +195,19 @@
     </div>
 
     <header id="main-header">
-        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Esteban Campos</a></div>
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+                <img src="assets/images/LOGO/logoecp1.png" alt="EC Logo" class="logo-img">
+                <span>Esteban Campos</span>
+            </a>
+            </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#portfolio">Historias</a></li>
-                <li><a href="#filosofia-fiestas">Filosofía</a></li>
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="boda.html">BODA</a></li>
+                <li><a href="comuniones.html">COMUNIONES</a></li>
+                <li><a href="fiestas.html">FIESTAS</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
             </ul>
         </nav>
     </header>
@@ -180,7 +219,7 @@
         <div class="page-hero-content">
             <p>GRANDEZA Y TRADICIÓN</p>
             <h1>La Épica del Desfile.</h1>
-            <p>Fotografía de Fiestas y Eventos Históricos en España</p>
+            <p>Fotografía de Fiestas y Eventos Históricos</p>
             <a href="#galeria" class="cta-button">Ver el Espectáculo</a>
         </div>
     </div>
@@ -239,9 +278,6 @@
             
         </div>
         
-        <div style="text-align: center; margin-top: 100px;">
-             <a href="#contact" class="cta-button">Documentar mi Fila/Comparsa</a>
-        </div>
     </section>
 
     <section id="filosofia-fiestas" class="split-section">
@@ -249,7 +285,7 @@
             <span style="color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8em; font-weight: 600;">Visión Documental</span>
             <h2 style="font-family: var(--font-serif); font-size: 2.8em; margin: 15px 0 30px;">Cuando el arte se encuentra con la tradición.</h2>
             <p>
-                Más allá de la instantánea, capturamos el alma de la fiesta: el dramatismo de los trajes, la fuerza de la música y la emoción colectiva del desfile.
+                Más allá de la instantánea, capturamos el alma de la fiesta: La espectacularidad de los trajes, la fuerza de la música y la emoción colectiva del desfile.
             </p>
             <p>
                 Nuestra misión es inmortalizar la inversión y el esfuerzo de años en una pieza fotográfica que respete la historia y celebre la espectacularidad de cada acto.
@@ -269,33 +305,24 @@
             </div>
             <div class="footer-links">
                 <p style="color: white; font-weight: 500;">EXPLORAR</p>
-                <ul>
-                    <li><a href="boda.html">Bodas</a></li>
-                    <li><a href="comuniones.html">Comuniones</a></li>
-                    <li><a href="fiestas.html">Fiestas</a></li>
-                    <li><a href="lifestyle.html">Lifestyle</a></li>
-                </ul>
+            
             </div>
             <div class="footer-links">
                 <p style="color: white; font-weight: 500;">CONTACTO</p>
                 <ul>
-                    <li>hola@estebancamposphoto.com</li>
-                    <li>+34 600 000 000</li>
-                    <li>Mallorca, España</li>
+                    <li>estebancampospolo@gmail.com</li>
+                    <li>+34 625 225 324</li>
+                    <li>Onil, Alicante, España</li>
                 </ul>
             </div>
             <div class="footer-links">
-                 <p style="color: white; font-weight: 500;">SOCIAL</p>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                </ul>
+                   <p style="color: white; font-weight: 500;">SOCIAL</p>
+            
             </div>
         </div>
         <div style="border-top: 1px solid #222; padding-top: 30px; display: flex; justify-content: space-between; color: #555;">
-            <span>&copy; 2024 Esteban Campos Photo. Todos los derechos reservados.</span>
-            <span>Diseño Web Consciente</span>
+            <span>&copy; 2025 Esteban Campos Photo. Todos los derechos reservados.</span>
+            <span>Diseño Web | Esteban Campos</span>
         </div>
     </footer>
 
@@ -371,7 +398,7 @@
              }
              el.style.opacity = '0'; 
              el.style.transform = 'translateY(30px)'; 
-            scrollObserver.observe(el);
+             scrollObserver.observe(el);
         });
     </script>
 </body>

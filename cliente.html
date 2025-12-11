@@ -189,10 +189,98 @@
             .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
             .close { top: 15px; right: 25px; }
         }
+/* ------------------------------------------------- */
+/* === 1. ENCABEZADO Y MENÚ === */
+/* ------------------------------------------------- */
+header { 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    padding: 15px 50px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 100; /* Asegura que esté sobre el slideshow */
+    background: rgba(17, 17, 17, 0.95); 
+    color: white; 
+    box-shadow: 0 2px 20px rgba(0,0,0,0.5); 
+    box-sizing: border-box; 
+}
 
+/* ESTILOS UNIFICADOS Y ESPECÍFICOS PARA EL LOGO (IMAGEN + TEXTO DORADO) */
+.logo-link {
+    display: flex; 
+    align-items: center;
+    text-decoration: none;
+    line-height: 1; 
+}
+
+.logo-img {
+    height: 40px; /* Tamaño unificado */
+    width: auto; 
+    margin-right: 10px; 
+    display: block;
+}
+
+.logo-text { 
+    font-family: var(--font-serif); 
+    font-size: 1.8em; 
+    letter-spacing: 2px; 
+    font-weight: 300; 
+    color: var(--accent); /* SÓLO ESTE TEXTO ES DORADO */
+    text-transform: uppercase; 
+}
+/* FIN DE ESTILOS DEL LOGO */
+
+nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+nav a { 
+    text-decoration: none; 
+    color: var(--text-main); /*⬅️ Enlaces de navegación forzados a BLANCO */
+    font-size: 0.8em; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: 500; 
+    position: relative; 
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: var(--accent-hover);
+}
+nav a::after { 
+    content: ''; 
+    position: absolute; 
+    bottom: -5px; 
+    left: 0; 
+    width: 0%; 
+    height: 1px; 
+    background: var(--accent); 
+    transition: width 0.3s; 
+}
+nav a:hover::after { 
+    width: 100%; 
+}
+
+/* Estilos Responsive para la cabecera (oculta el menú en pantallas pequeñas) */
+@media (max-width: 900px) {
+    header { padding: 15px 20px; }
+    nav { display: none; }
+}
     </style>
 </head>
 <body>
+
+<header>
+    <a href="index.html" class="logo-link">
+        <img src="assets/images/LOGO/logoecp1.png" alt="EC Logo" class="logo-img">
+        <span class="logo-text">Esteban Campos</span>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="index.html">INICIO</a></li>
+        </ul>
+    </nav>
+</header>
+
 
     <div class="session-header">
         <h1>Día de Fatxos 8 de Diciembre de 2025</h1>
@@ -203,27 +291,27 @@
         
         <div class="download-container">
             <a href="assets/images/fatxos/fatxos1.zip" 
-               class="cta-button" 
-               target="_blank">
-                DESCARGAR TODAS LAS FOTOS ORIGINALES PARTE 1 (ZIP)
+                class="cta-button" 
+                target="_blank">
+                 DESCARGAR TODAS LAS FOTOS ORIGINALES PARTE 1 (ZIP)
             </a>
         <div class="download-container">
             <a href="assets/images/fatxos/fatxos2.zip" 
-               class="cta-button" 
-               target="_blank">
-                DESCARGAR TODAS LAS FOTOS ORIGINALES PARTE 2 (ZIP)
+                class="cta-button" 
+                target="_blank">
+                 DESCARGAR TODAS LAS FOTOS ORIGINALES PARTE 2 (ZIP)
             </a>
         <div class="download-container">
             <a href="assets/images/fatxos/fatxos3.zip" 
-               class="cta-button" 
-               target="_blank">
-                DESCARGAR TODAS LAS FOTOS ORIGINALES PARTE 3 (ZIP)
+                class="cta-button" 
+                target="_blank">
+                 DESCARGAR TODAS LAS FOTOS ORIGINALES PARTE 3 (ZIP)
             </a>
             <p class="download-info">Haga clic una sola vez. La descarga puede tardar unos minutos.</p>
         </div>
 
         <div class="gallery-grid" id="photoGallery">
-            </div>
+             </div>
     </div>
     
     <footer>

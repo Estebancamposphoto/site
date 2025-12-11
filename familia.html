@@ -32,13 +32,13 @@
         /* ------------------------------------------------- */
         html { scroll-behavior: smooth; }
         
-        body {   
-            font-family: var(--font-sans);   
-            margin: 0; padding: 0;   
-            color: var(--text-main); 
+        body {    
+            font-family: var(--font-sans);    
+            margin: 0; padding: 0;    
+            color: var(--text-main);
             line-height: 1.8;
             font-weight: 300;
-            overflow-x: hidden;   
+            overflow-x: hidden;    
             background-color: var(--bg-color-top);
             background-attachment: fixed; 
         }
@@ -89,7 +89,7 @@
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
         /* === HEADER === */
-        header {   
+        header {    
             position: fixed; top: 0; width: 100%; padding: 15px 50px; 
             display: flex; justify-content: space-between; align-items: center;
             z-index: 100; 
@@ -98,16 +98,51 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.5); 
             box-sizing: border-box;
         }
-        .logo { font-family: var(--font-serif); font-size: 1.4em; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+
+        /* ESTILOS UNIFICADOS Y ESPECÍFICOS PARA EL LOGO (IMAGEN + TEXTO DORADO) */
+        .logo-link {
+            display: flex; 
+            align-items: center;
+            text-decoration: none;
+            line-height: 1; 
+        }
+        
+        .logo-img {
+            height: 40px; /* Tamaño unificado */
+            width: auto; 
+            margin-right: 10px; 
+            display: block;
+        }
+        
+        .logo-text { 
+            font-family: var(--font-serif); 
+            font-size: 1.8em; 
+            letter-spacing: 2px; 
+            font-weight: 300; 
+            color: var(--accent); /* ⬅️ SÓLO ESTE TEXTO ES DORADO */
+            text-transform: uppercase; 
+        }
+        /* FIN DE ESTILOS DEL LOGO */
         
         nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
         nav a { 
-            text-decoration: none; color: inherit; font-size: 0.75em; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; position: relative;
+            text-decoration: none; 
+            color: var(--text-main); /* ⬅️ Enlaces de navegación forzados a BLANCO */
+            font-size: 0.75em; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: 500; 
+            position: relative; 
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--accent-hover);
         }
         nav a::after {
             content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px; background: var(--accent); transition: width 0.3s;
         }
         nav a:hover::after { width: 100%; }
+
 
         /* ------------------------------------------------- */
         /* === 3. HERO DE PÁGINA ESPECÍFICA === */
@@ -115,11 +150,11 @@
         .page-hero {
             height: 60vh; 
             width: 100%; 
-            position: relative;   
+            position: relative;    
             display: flex; 
             align-items: center; 
             justify-content: center;
-            overflow: hidden;   
+            overflow: hidden;    
             padding-top: 50px; 
         }
 
@@ -128,7 +163,7 @@
             background-image: url('assets/images/comuniones/comunion (1).jpg'); 
             background-size: cover; 
             background-position: center 30%; 
-            z-index: 1;   
+            z-index: 1;    
         }
 
         .hero-overlay {
@@ -140,7 +175,7 @@
         .page-hero-content {
             z-index: 10; 
             text-align: center; 
-            color: #fff;   
+            color: #fff;    
             padding: 0 20px;
             text-shadow: 0 4px 8px rgba(0,0,0,0.8);
         }
@@ -249,13 +284,18 @@
     </div>
 
     <header id="main-header">
-        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Esteban Campos</a></div>
+        <a href="index.html" class="logo-link">
+            <img src="assets/images/LOGO/logoecp1.png" alt="EC Logo" class="logo-img">
+            <span class="logo-text">Esteban Campos</span>
+        </a>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#portfolio">Historias</a></li>
-                <li><a href="#filosofia-comuniones">Filosofía</a></li>
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="boda.html">BODA</a></li>
+                <li><a href="comuniones.html">COMUNIONES</a></li>
+                <li><a href="familia.html">FAMILIA</a></li>
+                <li><a href="fiestas.html">FIESTAS</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
             </ul>
         </nav>
     </header>
@@ -397,10 +437,8 @@
              }
              el.style.opacity = '0'; // Reasegurar el estilo inicial
              el.style.transform = 'translateY(30px)'; // Reasegurar el estilo inicial
-            scrollObserver.observe(el);
+             scrollObserver.observe(el);
         });
-
-        // NOTA: Se ha eliminado la observación de '.intro-text' ya que fue eliminado del HTML.
     </script>
 </body>
 </html>

@@ -28,21 +28,21 @@
         /* ------------------------------------------------- */
         html { scroll-behavior: smooth; }
         
-        body {   
-            font-family: var(--font-sans);   
-            margin: 0; padding: 0;   
-            color: var(--text-main); 
+        body {    
+            font-family: var(--font-sans);    
+            margin: 0; padding: 0;    
+            color: var(--text-main);
             line-height: 1.8;
             font-weight: 300;
-            overflow-x: hidden;     
+            overflow-x: hidden;      
             background: linear-gradient(180deg, var(--bg-color-top) 0%, var(--bg-color-bottom) 100%);
             background-attachment: fixed; 
             
             /* 🔒 Estilos Anti-Copia: Deshabilita la selección de texto */
             -webkit-user-select: none;  
-            -moz-user-select: none;     
+            -moz-user-select: none;      
             -ms-user-select: none;      
-            user-select: none;          
+            user-select: none;           
         }
         
         /* 🔒 Evita que las imágenes sean arrastrables */
@@ -72,20 +72,36 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.5); 
             box-sizing: border-box; 
         }
-        .logo { 
+        
+        /* ESTILOS UNIFICADOS Y ESPECÍFICOS PARA EL LOGO (IMAGEN + TEXTO DORADO) */
+        .logo-link {
+            display: flex; 
+            align-items: center;
+            text-decoration: none;
+            line-height: 1; 
+        }
+        
+        .logo-img {
+            height: 40px; /* Tamaño unificado */
+            width: auto; 
+            margin-right: 10px; 
+            display: block;
+        }
+        
+        .logo-text { 
             font-family: var(--font-serif); 
             font-size: 1.8em; 
             letter-spacing: 2px; 
             font-weight: 300; 
-            color: var(--accent); 
-            text-decoration: none;
+            color: var(--accent); /* ⬅️ SÓLO ESTE TEXTO ES DORADO */
             text-transform: uppercase; 
         }
+        /* FIN DE ESTILOS DEL LOGO */
         
         nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
         nav a { 
             text-decoration: none; 
-            color: var(--text-main); 
+            color: var(--text-main); /* ⬅️ Enlaces de navegación en blanco */
             font-size: 0.8em; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
@@ -247,13 +263,15 @@
 <body>
 
     <header>
-        <a href="index.html" class="logo">Esteban Campos</a>
+        <a href="index.html" class="logo-link">
+            <img src="assets/images/LOGO/logoecp1.png" alt="EC Logo" class="logo-img">
+            <span class="logo-text">Esteban Campos</span>
+        </a>
         <nav>
             <ul>
                 <li><a href="index.html">INICIO</a></li>
                 <li><a href="boda.html">BODA</a></li>
                 <li><a href="comuniones.html">COMUNIONES</a></li>
-                <li><a href="familia.html">FAMILIA</a></li>
                 <li><a href="fiestas.html">FIESTAS</a></li>
                 <li><a href="#contacto">CONTACTO</a></li>
             </ul>
@@ -272,7 +290,7 @@
     <section class="category-grid">
 
         <a href="comuniones.html" class="category-card">
-            <img src="assets/images/comuniones/comunion (1).jpg" alt="Comuniones">
+            <img src="assets/images/comuniones/comunion (16).jpg" alt="Comuniones">
             <div class="card-info">
                 <h3>Comunión</h3>
                 <p>Elegancia y Espiritualidad</p>
@@ -296,7 +314,7 @@
         </a>
         
         <a href="boda.html" class="category-card">
-            <img src="assets/images/boda/boda (4).jpg" alt="Boda y Otros">
+            <img src="assets/images/boda/boda (9).jpg" alt="Boda y Otros">
             <div class="card-info">
                 <h3>Boda & Otros</h3>
                 <p>Reportajes Personalizados</p>
@@ -322,8 +340,8 @@
             </div>
             <div class="footer-links" id="contacto">
                  <h4 style="color: var(--accent); font-size: 1em; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 2px;">Contacto</h4>
-                <p style="color: var(--text-light); margin-bottom: 5px;">hola@estebancamposphoto.com</p>
-                <p style="color: var(--text-light);">+34 123 456 789</p>
+                <p style="color: var(--text-light); margin-bottom: 5px;">estebancampospolo@gmail.com</p>
+                <p style="color: var(--text-light);">+34 625 225 324</p>
             </div>
         </div>
         <div class="footer-copy">
@@ -342,7 +360,7 @@
         // -------------------------------------------------
         const slides = [
             // Rutas de ejemplo para el Slideshow (mezcla de categorías)
-            'assets/images/boda/boda (5).jpg', 
+            'assets/images/boda/boda (8).jpg', 
             'assets/images/comuniones/comunion (5).jpg', 
             'assets/images/familia/familia (5).jpg', 
             'assets/images/fiestas/fiesta (5).jpg',
