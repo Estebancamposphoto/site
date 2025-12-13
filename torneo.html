@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚽ ELITE | II Torneo Navidad CORTITA Y AL PIE - Los Imparables 🦁</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #004D99;
+  --color-secondary: #FF9900;
+  --color-background: #0D1117;
+  --color-surface: #1E232B;
+  --color-text-light: #F0F6FC;
+  --color-success: #32CD32;
+  --color-fail: #DC143C;
+  --hero-height: 320px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Montserrat',sans-serif; background:var(--color-background); color:var(--color-text-light); line-height:1.6; }
+h1,h2,h3,h4 { font-family:'Bebas Neue',sans-serif; letter-spacing:2px; text-transform:uppercase; color:var(--color-text-light); }
+
+.hero {
+  background: linear-gradient(to right,#0D1117,#1E232B,#0D1117);
+  padding:40px 20px 20px;
+  text-align:center;
+  border-bottom:8px solid var(--color-secondary);
+  position:relative;
+  height:var(--hero-height);
+  overflow:hidden;
+}
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('assets/images/torneo/fondo-hero.jpg') center/cover no-repeat;
+  opacity:.08;
+  z-index:0;
+}
+.hero-content { position:relative; z-index:1; max-width:900px; margin:auto; }
+
+/* HERO LOGOS Y TEXTO CENTRAL OPTIMIZADO */
+.hero-logos {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+}
+.team-logo {
+  width:180px;
+  flex-shrink:0;
+  filter:drop-shadow(0 0 8px var(--color-secondary));
+}
+.hero-title-container {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  min-width:200px;
+  max-width:50%;
+}
+.hero h1 {
+  margin:0;
+  font-size:3.5rem;
+  color:var(--color-secondary);
+  text-shadow:0 0 15px rgba(255,153,0,.8);
+  text-align:center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hero h1 span {
+  font-family:'Montserrat';
+  font-size:.7em;
+  font-weight:800;
+  color:var(--color-text-light);
+  display:block;
+  text-shadow:none;
+  white-space: normal;
+}
+
+/* NAVBAR */
+.nav-bar-container {
+  background:#12161D;
+  padding:10px 20px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.nav-button {
+  padding:8px 15px;
+  text-decoration:none;
+  color:var(--color-secondary);
+  font-weight:600;
+  font-size:.85em;
+  text-transform:uppercase;
+  border-bottom:2px solid transparent;
+}
+.nav-button:hover, .nav-button.active { color:var(--color-text-light); border-bottom-color:var(--color-primary); }
+.download-btn {
+  padding:8px 15px;
+  background:var(--color-fail);
+  color:#fff;
+  border-radius:4px;
+  font-weight:700;
+  text-decoration:none;
+  border:1px solid #fff;
+  transition:.3s;
+}
+.download-btn:hover { background:#C00; transform:translateY(-2px); }
+
+/* SECCIONES */
+.section-container { padding:40px 20px; max-width:1200px; margin:auto; }
+.section-container h3 { text-align:left; margin-bottom:25px; border-left:5px solid var(--color-secondary); padding-left:10px; }
+
+/* CROMOS */
+.cromos-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:35px; }
+.cromo-card {
+  background:var(--color-surface);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,.5);
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .25s ease,box-shadow .25s ease;
+  position:relative;
+  height:var(--hero-height);
+}
+.cromo-card:hover { transform:translateY(-8px) scale(1.06); box-shadow:0 15px 25px rgba(255,153,0,.55); }
+.cromo-frame { width:100%; height:100%; overflow:hidden; }
+.player-photo { width:100%; height:100%; object-fit:cover; }
+.player-info-strip {
+  background:rgba(0,0,0,.85);
+  padding:10px;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  border-top:4px solid var(--color-secondary);
+}
+.player-name { text-align:center; font-size:1.6em; font-weight:800; text-transform:uppercase; color:var(--color-secondary); }
+
+/* RESULTADOS */
+.match-result {
+  display:grid;
+  grid-template-columns:1fr 40px 20px 40px 1fr 100px;
+  gap:8px;
+  padding:15px;
+  background:#2A3443;
+  margin-bottom:10px;
+  border-left:5px solid var(--color-primary);
+  border-radius:4px;
+  align-items:center;
+}
+.team-a,.team-b { font-weight:700; }
+.team-b { text-align:right; }
+.score { font-size:1.2em; font-weight:800; color:var(--color-secondary); text-align:center; }
+.result-badge { padding:5px; font-size:.75em; font-weight:700; text-align:center; border-radius:4px; }
+.resultado-VICTORIA { background:var(--color-success); }
+.resultado-EMPATE { background:var(--color-secondary); color:#000; }
+.resultado-DERROTA { background:var(--color-fail); }
+
+/* MODAL */
+.img-modal {
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.88);
+  z-index:99999;
+  padding:20px;
+}
+.img-modal.open { display:flex; }
+.img-modal .modal-inner {
+  position:relative;
+  max-width:95vw;
+  max-height:92vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.img-modal img { max-width:100%; max-height:100%; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.6); }
+.modal-close {
+  position:absolute;
+  top:-12px;
+  right:-12px;
+  background:transparent;
+  border:0;
+  color:#fff;
+  font-size:40px;
+  line-height:1;
+  cursor:pointer;
+  padding:8px 12px;
+  border-radius:6px;
+  box-shadow:0 6px 18px rgba(0,0,0,.6);
+}
+.modal-close:hover { color:#FF6666; transform:scale(1.02); }
+.modal-nav {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:34px;
+  color:#fff;
+  cursor:pointer;
+  padding:12px;
+  border-radius:8px;
+  background:rgba(0,0,0,.35);
+  user-select:none;
+}
+.modal-prev { left:8px; }
+.modal-next { right:8px; }
+.modal-counter {
+  position:absolute;
+  bottom:-35px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#fff;
+  font-weight:700;
+  background:rgba(0,0,0,.45);
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:.95rem;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  :root { --hero-height:240px; }
+  .team-logo { width:120px; }
+  .hero-title-container { max-width:60%; }
+  .hero h1 { font-size:2.5rem; }
+  .cromo-card { height:var(--hero-height); }
+  .player-name { font-size:1.2em; }
+  .match-result { grid-template-columns:1fr 30px 15px 30px 1fr 70px; font-size:.8em; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-logos">
+      <img src="assets/images/torneo/logo imparables.png" alt="Logo Los Imparables" class="team-logo">
+      <div class="hero-title-container">
+        <h1>LOS IMPARABLES<span>FUTSAL PREBENJAMÍN</span></h1>
+      </div>
+      <img src="assets/images/torneo/logo imparables.png" alt="Logo Los Imparables" class="team-logo">
+    </div>
+    <h2>II Torneo Navidad Cortita y al Pie</h2>
+    <p class="tournament-info">3 y 4 de enero de 2026 | Polideportivo de Ibi</p>
+  </div>
+</header>
+
+<div class="nav-bar-container">
+  <nav>
+    <a href="#cromos" class="nav-button active">Cromos</a>
+    <a href="#resultados" class="nav-button">Partidos</a>
+  </nav>
+  <a href="assets/images/torneo/cromos tamaño.pdf" target="_blank" class="download-btn"> Descargar colección</a>
+</div>
+
+<section id="cromos" class="section-container">
+  <h3> Plantilla y Colección de Cromos</h3>
+  <div class="cromos-grid" id="cromos-grid"></div>
+</section>
+
+<section id="resultados" class="section-container">
+  <h3> Partidos y Resultados</h3>
+  <div id="matches-container"></div>
+  <div class="stats-container">
+    <h4> Estadísticas</h4>
+    <ul id="stats-list"></ul>
+  </div>
+</section>
+
+<div id="img-modal" class="img-modal" aria-hidden="true" role="dialog" aria-label="Visor de imagen">
+  <div class="modal-inner" role="document">
+    <button class="modal-close" aria-label="Cerrar visor">&times;</button>
+    <div class="modal-nav modal-prev" role="button" aria-label="Imagen anterior">&#10094;</div>
+    <img id="modal-image" src="" alt="Imagen ampliada">
+    <div class="modal-nav modal-next" role="button" aria-label="Imagen siguiente">&#10095;</div>
+    <div class="modal-counter" id="modal-counter">0 / 0</div>
+  </div>
+</div>
+
+<footer style="padding:20px;text-align:center;color:#777;font-size:.8em;">
+  Los Imparables Futsal | Desarrollado por Esteban Campos
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  const BASE_JPG = "assets/images/torneo/jpg/";
+  const BASE_WEBP = "assets/images/torneo/webp/";
+  const jugadores = [
+    {id:1, nombre:"Bruno M.", foto:"brunom.jpg"},
+    {id:2, nombre:"Martín", foto:"martin.jpg"},
+    {id:3, nombre:"Andrés", foto:"andrés.jpg"},
+    {id:4, nombre:"Marcos", foto:"marcos.jpg"},
+    {id:5, nombre:"Lenko", foto:"lenko.jpg"},
+    {id:6, nombre:"Carlos", foto:"carlos.jpg"},
+    {id:7, nombre:"Leo", foto:"leo.jpg"},
+    {id:9, nombre:"Raúl", foto:"raúl.jpg"},
+    {id:10, nombre:"Thiago", foto:"thiago.jpg"},
+    {id:11, nombre:"Joan", foto:"joan.jpg"},
+    {id:12, nombre:"Leo R.", foto:"leorodenas.jpg"}
+  ];
+
+  const cromosGrid = document.getElementById("cromos-grid");
+  const images = [];
+  jugadores.forEach((j, idx)=>{
+    const jpg = BASE_JPG+j.foto;
+    const webp = BASE_WEBP+j.foto.replace(".jpg",".webp");
+    images.push({jpg:jpg,alt:`#${j.id} ${j.nombre}`});
+    const a = document.createElement("div");
+    a.className = "cromo-card";
+    a.dataset.index = idx;
+    a.innerHTML = `
+      <div class="cromo-frame">
+        <picture>
+          <source srcset="${webp}" type="image/webp">
+          <img class="player-photo" src="${jpg}" alt="${j.nombre}" loading="lazy">
+        </picture>
+      </div>
+      <div class="player-info-strip"><p class="player-name">${j.id} ${j.nombre}</p></div>`;
+    cromosGrid.appendChild(a);
+  });
+
+  const modal = document.getElementById("img-modal");
+  const modalImg = document.getElementById("modal-image");
+  const modalCounter = document.getElementById("modal-counter");
+  const btnClose = modal.querySelector(".modal-close");
+  const btnPrev = modal.querySelector(".modal-prev");
+  const btnNext = modal.querySelector(".modal-next");
+  let currentIndex=0, touchStartX=0, touchEndX=0;
+
+  function normalizeIndex(i){ return (i<0)?images.length-1:(i>=images.length)?0:i; }
+  function preloadImage(url){ const img=new Image(); img.src=url; }
+  function updateModalImage(){
+    const obj = images[currentIndex];
+    modalImg.src = obj.jpg;
+    modalImg.alt = obj.alt;
+    modalCounter.textContent = `${currentIndex+1} / ${images.length}`;
+    preloadImage(images[normalizeIndex(currentIndex-1)].jpg);
+    preloadImage(images[normalizeIndex(currentIndex+1)].jpg);
+  }
+  function openModal(index){ currentIndex=normalizeIndex(index); updateModalImage(); modal.setAttribute("aria-hidden","false"); modal.classList.add("open"); document.documentElement.style.overflow="hidden"; document.body.style.overflow="hidden"; btnClose.focus(); }
+  function closeModal(){ modal.classList.remove("open"); modal.setAttribute("aria-hidden","true"); modalImg.src=""; modalCounter.textContent=""; document.documentElement.style.overflow=""; document.body.style.overflow=""; }
+  function showNext(){ currentIndex=normalizeIndex(currentIndex+1); updateModalImage(); }
+  function showPrev(){ currentIndex=normalizeIndex(currentIndex-1); updateModalImage(); }
+
+  document.querySelectorAll(".cromo-card").forEach(card=>card.addEventListener("click", e=>{ e.preventDefault(); openModal(parseInt(card.dataset.index,10)||0); }));
+  btnClose.addEventListener("click", closeModal);
+  btnNext.addEventListener("click", showNext);
+  btnPrev.addEventListener("click", showPrev);
+  modal.addEventListener("click", e=>{ if(e.target===modal) closeModal(); });
+  document.addEventListener("keydown", e=>{
+    if(!modal.classList.contains("open")) return;
+    if(e.key==="Escape") closeModal();
+    if(e.key==="ArrowRight") showNext();
+    if(e.key==="ArrowLeft") showPrev();
+  });
+  modal.addEventListener("touchstart", e=>{ touchStartX=e.changedTouches[0].screenX; });
+  modal.addEventListener("touchend", e=>{
+    touchEndX=e.changedTouches[0].screenX;
+    const dx = touchEndX-touchStartX;
+    if(Math.abs(dx)>40){ if(dx<0) showNext(); else showPrev(); }
+  });
+
+  const resultados = [
+    {rival:"Por Determina",goles_propios:0,goles_rival:0},
+    {rival:"Por Determina",goles_propios:0,goles_rival:0},
+    {rival:"Por Determinar",goles_propios:0,goles_rival:0}
+  ];
+  const matchesContainer=document.getElementById("matches-container");
+  let victorias=0, empates=0, derrotas=0;
+  resultados.forEach(r=>{
+    let estado="EMPATE";
+    if(r.goles_propios>r.goles_rival){ estado="VICTORIA"; victorias++; }
+    else if(r.goles_propios<r.goles_rival){ estado="DERROTA"; derrotas++; }
+    else empates++;
+    const item=document.createElement("div");
+    item.className="match-result";
+    item.innerHTML = `<div class="team-a">Los Imparables</div><div class="score">${r.goles_propios}</div><div class="vs">vs</div><div class="score">${r.goles_rival}</div><div class="team-b">${r.rival}</div><div class="result-badge resultado-${estado}">${estado}</div>`;
+    matchesContainer.appendChild(item);
+  });
+  const statsList=document.getElementById("stats-list");
+  statsList.innerHTML=`<li>Victorias: ${victorias}</li><li>Empates: ${empates}</li><li>Derrotas: ${derrotas}</li><li>Goles a favor: ${resultados.reduce((s,r)=>s+r.goles_propios,0)}</li><li>Goles en contra: ${resultados.reduce((s,r)=>s+r.goles_rival,0)}</li>`;
+});
+</script>
+
+</body>
+</html>
