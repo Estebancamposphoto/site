@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>II Torneo Navidad CORTITA Y AL PIE - Los Imparables</title>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ6THR7681"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-ZZ6THR7681'); 
-    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ6THR7681"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZ6THR7681'); 
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -187,54 +186,40 @@ h1,h2,h3,h4 { font-family:'Bebas Neue',sans-serif; letter-spacing:2px; text-tran
 }
 .img-modal.open { display:flex; }
 .img-modal .modal-inner {
-  position:relative;
-  max-width:95vw;
-  max-height:92vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  position: relative;
+  max-width: 95vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.img-modal img { max-width:100%; max-height:100%; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.6); }
-.modal-close {
-  position:absolute;
-  top:-12px;
-  right:-12px;
-  background:transparent;
-  border:0;
-  color:#fff;
-  font-size:40px;
-  line-height:1;
+
+.img-modal img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* BOTÓN SONIDO */
+#sound-toggle {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:rgba(0,0,0,.7);
+  border:2px solid var(--color-secondary);
+  color:var(--color-secondary);
+  font-size:26px;
+  padding:10px 14px;
+  border-radius:50%;
   cursor:pointer;
-  padding:8px 12px;
-  border-radius:6px;
-  box-shadow:0 6px 18px rgba(0,0,0,.6);
+  z-index:2000;
 }
-.modal-close:hover { color:#FF6666; transform:scale(1.02); }
-.modal-nav {
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:34px;
-  color:#fff;
-  cursor:pointer;
-  padding:12px;
-  border-radius:8px;
-  background:rgba(0,0,0,.35);
-  user-select:none;
-}
-.modal-prev { left:8px; }
-.modal-next { right:8px; }
-.modal-counter {
-  position:absolute;
-  bottom:-35px;
-  left:50%;
-  transform:translateX(-50%);
-  color:#fff;
-  font-weight:700;
-  background:rgba(0,0,0,.45);
-  padding:6px 12px;
-  border-radius:20px;
-  font-size:.95rem;
+#sound-toggle.muted {
+  color:#777;
+  border-color:#777;
 }
 
 /* RESPONSIVE */
@@ -247,6 +232,56 @@ h1,h2,h3,h4 { font-family:'Bebas Neue',sans-serif; letter-spacing:2px; text-tran
   .player-name { font-size:1.2em; }
   .match-result { grid-template-columns:1fr 30px 15px 30px 1fr 70px; font-size:.8em; }
 }
+/* BOTÓN SONIDO CON TÍTULO */
+#sound-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,0,0,.75);
+  border: 2px solid var(--color-secondary);
+  color: var(--color-secondary);
+  font-size: 16px;
+  padding: 10px 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 2000;
+  transition: background .25s, transform .2s;
+}
+
+#sound-toggle:hover {
+  background: rgba(0,0,0,.9);
+  transform: scale(1.03);
+}
+
+#sound-toggle.muted {
+  color: #777;
+  border-color: #777;
+}
+
+#sound-toggle .sound-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+#sound-toggle .sound-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+/* En móvil mostramos solo el icono */
+@media (max-width: 480px) {
+  #sound-toggle .sound-title {
+    display: none;
+  }
+}
+
 </style>
 </head>
 
@@ -302,8 +337,19 @@ h1,h2,h3,h4 { font-family:'Bebas Neue',sans-serif; letter-spacing:2px; text-tran
   Los Imparables Futsal | Desarrollado por Esteban Campos
 </footer>
 
+<!-- AUDIO -->
+<audio id="bg-music" loop>
+  <source src="assets/audio/los_imparables_theme2026.mpeg" type="audio/mpeg">
+</audio>
+
+<div id="sound-toggle" class="muted">
+  <span class="sound-icon">🔇</span>
+  <span class="sound-title">los_imparables_theme2026</span>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', ()=>{
+
   const BASE_JPG = "assets/images/torneo/jpg/";
   const BASE_WEBP = "assets/images/torneo/webp/";
   const jugadores = [
@@ -400,6 +446,47 @@ document.addEventListener('DOMContentLoaded', ()=>{
   });
   const statsList=document.getElementById("stats-list");
   statsList.innerHTML=`<li>Victorias: ${victorias}</li><li>Empates: ${empates}</li><li>Derrotas: ${derrotas}</li><li>Goles a favor: ${resultados.reduce((s,r)=>s+r.goles_propios,0)}</li><li>Goles en contra: ${resultados.reduce((s,r)=>s+r.goles_rival,0)}</li>`;
+
+/* AUDIO DE FONDO */
+const music = document.getElementById("bg-music");
+const toggle = document.getElementById("sound-toggle");
+const icon = toggle.querySelector(".sound-icon");
+
+music.volume = 0.35;
+music.muted = true;
+
+let audioUnlocked = false;
+
+/* Botón mute */
+toggle.addEventListener("click", (e)=>{
+  e.stopPropagation();
+
+  music.muted = !music.muted;
+
+  if (!music.muted) {
+    music.play().catch(()=>{});
+    icon.textContent = "🔊";
+    toggle.classList.remove("muted");
+    audioUnlocked = true;
+  } else {
+    icon.textContent = "🔇";
+    toggle.classList.add("muted");
+  }
+});
+
+/* Primer click en la página */
+document.addEventListener("click", ()=>{
+  if (audioUnlocked) return;
+
+  music.muted = false;
+  music.play().catch(()=>{});
+  icon.textContent = "🔊";
+  toggle.classList.remove("muted");
+  audioUnlocked = true;
+},{ once:true });
+
+
+
 });
 </script>
 
