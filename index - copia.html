@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esteban Campos | Fotografía de Boda, Familia y Eventos</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ6THR7681"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZZ6THR7681');
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* 🎨 ESTILOS GENERALES (Adoptados de familia.html) */
+
+        /* ================================================= */
+        /* === 1. VARIABLES DE LUJO (Colores y Fuentes) === */
+        /* ================================================= */
+        :root {
+            --bg-color-top: #111111;    
+            --bg-color-bottom: #000000; 
+            --text-main: #FFFFFF;      
+            --text-light: #AAAAAA;    
+            --accent: #B08D55;         
+            --accent-hover: #D8A967;   
+            --font-serif: 'Cormorant Garamond', serif; 
+            --font-sans: 'Montserrat', sans-serif; 
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1); 
+        }
+
+        /* ------------------------------------------------- */
+        /* === 2. ESTILOS BASE Y FONDO === */
+        /* ------------------------------------------------- */
+        html { scroll-behavior: smooth; }
+        
+        body {    
+            font-family: var(--font-sans);    
+            margin: 0; padding: 0;    
+            color: var(--text-main);
+            line-height: 1.8;
+            font-weight: 300;
+            overflow-x: hidden;    
+            background-color: var(--bg-color-top);
+            background-attachment: fixed; 
+            /* Se añade protección anti-copia del código anterior */
+            -webkit-user-select: none;  
+            -moz-user-select: none;     
+            -ms-user-select: none;      
+            user-select: none;          
+        }
+        img { pointer-events: none; } /* Evita que las imágenes sean arrastrables */
+
+        body::before {
+            content: '';
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -3;
+            background: radial-gradient(circle, rgba(17, 17, 17, 0) 60%, rgba(0, 0, 0, 0.4) 100%); 
+            pointer-events: none;
+        }
+
+        /* === COMPONENTE: BOTÓN CTA (USADO EN HERO Y CATEGORÍAS) === */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            margin-top: 40px;
+            background: var(--accent);
+            color: var(--bg-color-top);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.8em;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s var(--ease-out), transform 0.3s;
+        }
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* === HEADER Y NAVEGACIÓN (Tomado de familia.html) === */
+        header {    
+            position: fixed; top: 0; width: 100%; padding: 15px 50px; 
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; 
+            background: rgba(17, 17, 17, 0.95); 
+            color: white; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5); 
+            box-sizing: border-box;
+        }
+
+        /* LOGO: IMAGEN + TEXTO DORADO (Tomado de familia.html) */
+        .logo-link {
+            display: flex; 
+            align-items: center;
+            text-decoration: none;
+            line-height: 1; 
+        }
+        
+        .logo-img {
+            height: 40px; 
+            width: auto; 
+            margin-right: 10px; 
+            display: block;
+        }
+        
+        .logo-text { 
+            font-family: var(--font-serif); 
+            font-size: 1.8em; 
+            letter-spacing: 2px; 
+            font-weight: 300; 
+            color: var(--accent);
+            text-transform: uppercase; 
+        }
+        
+        nav ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+        nav a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-size: 0.75em; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: 500; 
+            position: relative; 
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--accent-hover);
+        }
+        nav a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px; background: var(--accent); transition: width 0.3s;
+        }
+        nav a:hover::after { width: 100%; }
+
+        /* ------------------------------------------------- */
+     /* ------------------------------------------------- */
+/* === 3. SLIDESHOW HERO (FULL SCREEN) - ESPECÍFICO INDEX === */
+/* ------------------------------------------------- */
+.slideshow-container {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    /* Se elimina display: flex, align-items, justify-content aquí */
+}
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s var(--ease-out);
+    z-index: 1;
+}
+.slide.active {
+    opacity: 1;
+}
+
+.hero-overlay { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 2; 
+}
+
+/* 🏆 ESTILO CORREGIDO Y CENTRADO ABSOLUTO */
+.hero-content {
+    position: absolute; /* Se usa posicionamiento absoluto */
+    top: 50%; /* 50% de arriba */
+    left: 50%; /* 50% de la izquierda */
+    transform: translate(-50%, -50%); /* Se centra con la mitad de su tamaño */
+    z-index: 10;
+    text-align: center;
+    padding: 0 20px; /* Padding horizontal */
+    text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+    width: 100%; /* Ocupa todo el ancho disponible */
+    box-sizing: border-box; /* Incluye padding en el ancho */
+    max-width: 900px; /* Limita el tamaño del texto para estética */
+}
+
+/* El resto de estilos de .hero-content se mantienen */
+.hero-content h2 {
+    font-family: var(--font-serif);
+    font-size: 5em;
+    font-weight: 400;
+    margin-bottom: 10px;
+    line-height: 1;
+    color: white; 
+}
+.hero-content p {
+    font-family: var(--font-sans);
+    font-size: 1.2em;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 0;
+}
+
+
+        /* ------------------------------------------------- */
+        /* === 4. SECCIÓN DE CATEGORÍAS (GRAN PARTE DEL INDEX) === */
+        /* ------------------------------------------------- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 80px 10%;
+            text-align: center;
+            background-color: var(--bg-color-top);
+        }
+        .category-card {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+            text-decoration: none;
+            display: block;
+        }
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease-out;
+            filter: grayscale(80%);
+            /* Animación de aparición por scroll */
+            opacity: 0; 
+            transform: translateY(30px);
+            transition: all 0.8s var(--ease-out);
+        }
+        .category-card:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        .card-info {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--text-main);
+            z-index: 5;
+        }
+        .card-info h3 {
+            font-family: var(--font-serif);
+            margin: 0;
+            font-size: 1.8em;
+            letter-spacing: 1px;
+            color: var(--accent);
+        }
+        .card-info p {
+            margin: 0;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        /* ------------------------------------------------- */
+        /* === 5. PIE DE PÁGINA (Adoptado de familia.html) === */
+        /* ------------------------------------------------- */
+        footer {
+            background-color: var(--bg-color-bottom);
+            color: #555; 
+            padding: 80px 10% 40px;
+            font-size: 0.9em;
+            margin-top: 50px; /* Separación del grid de categorías */
+        }
+        .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 60px; }
+        .footer-brand h4 { color: white; font-family: var(--font-serif); font-size: 1.8em; margin: 0 0 20px; }
+        .footer-brand p { color: var(--text-light); } /* Color de texto ligero en descripción */
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { text-decoration: none; color: #555; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-links p { color: white; font-weight: 500; } /* Encabezados de links en blanco */
+
+
+        /* ------------------------------------------------- */
+        /* === 6. RESPONSIVE GENERAL === */
+        /* ------------------------------------------------- */
+        @media (max-width: 1200px) {
+            .category-grid { grid-template-columns: repeat(2, 1fr); padding: 80px 5%; }
+        }
+        @media (max-width: 900px) {
+            header { padding: 15px 20px; }
+            .hero-content h2 { font-size: 3.5em; }
+            .hero-content p { font-size: 1em; letter-spacing: 3px; }
+            nav { display: none; } 
+            .footer-top { flex-direction: column; }
+        }
+        @media (max-width: 600px) {
+            .hero-content h2 { font-size: 2.5em; }
+            .category-grid { grid-template-columns: 1fr; padding: 40px 5%; }
+            .category-card { height: 250px; }
+            .footer-brand, .footer-links { width: 100%; text-align: center;}
+            .footer-links ul { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <a href="index.html" class="logo-link">
+            <img src="assets/images/LOGO/logoecp1.png" alt="EC Logo" class="logo-img">
+            <span class="logo-text">Esteban Campos</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="boda.html">BODA</a></li>
+                <li><a href="comuniones.html">COMUNIONES</a></li>
+                <li><a href="fiestas.html">FIESTAS</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="slideshow-container" id="slideshow-container">
+        
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>Capturando vuestra historia</h2>
+            <p>Fotografía de Boda, Pareja y Familia</p>
+            <a href="#categorias" class="cta-button">Ver Reportajes</a>
+        </div>
+    </div>
+    
+    <section class="category-grid" id="categorias">
+
+        <a href="comuniones.html" class="category-card">
+            <img src="assets/images/comuniones/comunion (16).jpg" alt="Comuniones">
+            <div class="card-info">
+                <h3>Comunión</h3>
+                <p>Elegancia y Espiritualidad</p>
+            </div>
+        </a>
+
+        <a href="familia.html" class="category-card">
+            <img src="assets/images/familia/familia (5).jpg" alt="Familia">
+            <div class="card-info">
+                <h3>Familia</h3>
+                <p>El Vínculo del Hogar</p>
+            </div>
+        </a>
+        
+        <a href="fiestas.html" class="category-card">
+            <img src="assets/images/fiestas/fiesta (3).jpg" alt="Fiestas">
+            <div class="card-info">
+                <h3>Fiestas</h3>
+                <p>Eventos y Celebraciones</p>
+            </div>
+        </a>
+        
+        <a href="boda.html" class="category-card">
+            <img src="assets/images/boda/boda (9).jpg" alt="Boda y Otros">
+            <div class="card-info">
+                <h3>Boda & Otros</h3>
+                <p>Reportajes Personalizados</p>
+            </div>
+        </a>
+
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h4>ESTEBAN CAMPOS</h4>
+                <p>Creando patrimonio emocional para<br>familias extraordinarias.</p>
+            </div>
+            <div class="footer-links">
+                <p style="color: white; font-weight: 500;">EXPLORAR</p>
+                <ul>
+                    <li><a href="boda.html">Bodas</a></li>
+                    <li><a href="comuniones.html">Comuniones</a></li>
+                    <li><a href="familia.html">Familia</a></li>
+                    <li><a href="fiestas.html">Fiestas</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <p style="color: white; font-weight: 500;">CONTACTO</p>
+                <ul>
+                    <li><a href="mailto:estebancampospolo@gmail.com">estebancampospolo@gmail.com</a></li>
+                    <li><a href="tel:+34625225324">+34 625 225 324</a></li>
+                    <li style="color: var(--text-light);">Onil, Alicante, España</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                 <p style="color: white; font-weight: 500;">SOCIAL</p>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #222; padding-top: 30px; display: flex; justify-content: space-between; color: #555;">
+            <span>&copy; 2025 Esteban Campos Photo. Todos los derechos reservados.</span>
+            <span>Diseño Web Consciente</span>
+        </div>
+    </footer>
+
+    <script>
+        // ===================================================
+        // 🔒 CÓDIGO DE PROTECCIÓN ANTI-COPIA 
+        // ===================================================
+
+        // 1. Deshabilitar Clic Derecho (Menú contextual)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 2. Deshabilitar Herramientas de Desarrollador y Atajos
+        document.addEventListener('keydown', function(e) {
+            // Bloquear F12, Ctrl/Cmd + Shift + I/J/C, Ctrl/Cmd + U
+            if (e.key === 'F12' || 
+                ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                ((e.ctrlKey || e.metaKey) && e.key === 'U')) {
+                e.preventDefault();
+            }
+        });
+        
+        // -------------------------------------------------
+        // SLIDESHOW SCRIPT (FUNCIONALIDAD DEL INDEX)
+        // -------------------------------------------------
+        const slides = [
+            'assets/images/boda/boda (8).jpg', 
+            'assets/images/comuniones/comunion (5).jpg', 
+            'assets/images/familia/familia (5).jpg', 
+            'assets/images/fiestas/fiesta (5).jpg',
+            'assets/images/maternidad/maternidad (5).jpg'
+        ];
+        let currentSlide = 0;
+        const slideDuration = 5000; // 5 segundos
+
+        function initSlideshow() {
+            const container = document.getElementById('slideshow-container');
+            
+            slides.forEach((url, index) => {
+                const div = document.createElement('div');
+                div.className = 'slide';
+                div.style.backgroundImage = `url('${url}')`;
+                
+                if (index === 0) {
+                    div.classList.add('active');
+                }
+                
+                const overlay = container.querySelector('.hero-overlay');
+                container.insertBefore(div, overlay);
+            });
+            
+            setInterval(nextSlide, slideDuration);
+        }
+
+        function nextSlide() {
+            const allSlides = document.querySelectorAll('.slide');
+            allSlides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            allSlides[currentSlide].classList.add('active');
+        }
+
+        // -------------------------------------------------
+        // SCRIPT: ANIMACIÓN SCROLL (REVEAL) para las categorías
+        // -------------------------------------------------
+        const observerOptions = { threshold: 0.1 }; 
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target.querySelector('img'); 
+                    if(img) {
+                        img.style.opacity = '1';
+                        img.style.transform = 'translateY(0)';
+                    }
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initSlideshow();
+
+            document.querySelectorAll('.category-card').forEach((el, index) => {
+                const img = el.querySelector('img');
+                if (img) {
+                    // Retraso incremental para la aparición de las tarjetas
+                    img.style.transitionDelay = `${index * 0.08}s`;
+                    // Inicializar los estilos de animación (ya están en el CSS)
+                    img.style.opacity = '0'; 
+                    img.style.transform = 'translateY(30px)';
+                }
+                scrollObserver.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>
